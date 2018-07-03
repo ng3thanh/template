@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Introduces;
+use App\Http\Controllers\Controller;
+use App\Models\MenuProducts;
 use Illuminate\Http\Request;
 
-class IntroducesController extends Controller
+class MenuProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class IntroducesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Introduces  $introduces
+     * @param  \App\Models\MenuProducts  $menuProducts
      * @return \Illuminate\Http\Response
      */
-    public function show(Introduces $introduces)
+    public function show(MenuProducts $menuProducts)
     {
         //
     }
@@ -52,10 +53,10 @@ class IntroducesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Introduces  $introduces
+     * @param  \App\Models\MenuProducts  $menuProducts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Introduces $introduces)
+    public function edit(MenuProducts $menuProducts)
     {
         //
     }
@@ -64,10 +65,10 @@ class IntroducesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Introduces  $introduces
+     * @param  \App\Models\MenuProducts  $menuProducts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Introduces $introduces)
+    public function update(Request $request, MenuProducts $menuProducts)
     {
         //
     }
@@ -75,10 +76,10 @@ class IntroducesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Introduces  $introduces
+     * @param  \App\Models\MenuProducts  $menuProducts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Introduces $introduces)
+    public function destroy(MenuProducts $menuProducts)
     {
         //
     }

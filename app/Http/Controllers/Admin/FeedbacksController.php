@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\News;
+use App\Http\Controllers\Controller;
+use App\Models\Feedbacks;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class FeedbacksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Feedbacks  $feedbacks
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show(Feedbacks $feedbacks)
     {
         //
     }
@@ -52,10 +53,10 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Feedbacks  $feedbacks
      * @return \Illuminate\Http\Response
      */
-    public function edit(News $news)
+    public function edit(Feedbacks $feedbacks)
     {
         //
     }
@@ -64,10 +65,10 @@ class NewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Feedbacks  $feedbacks
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, Feedbacks $feedbacks)
     {
         //
     }
@@ -75,10 +76,10 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Feedbacks  $feedbacks
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(Feedbacks $feedbacks)
     {
         //
     }

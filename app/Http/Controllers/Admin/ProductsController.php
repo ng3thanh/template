@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\MenuProducts;
+use App\Http\Controllers\Controller;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
-class MenuProductsController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class MenuProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MenuProducts  $menuProducts
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show(MenuProducts $menuProducts)
+    public function show(Products $products)
     {
         //
     }
@@ -52,10 +53,10 @@ class MenuProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MenuProducts  $menuProducts
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(MenuProducts $menuProducts)
+    public function edit(Products $products)
     {
         //
     }
@@ -64,10 +65,10 @@ class MenuProductsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MenuProducts  $menuProducts
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MenuProducts $menuProducts)
+    public function update(Request $request, Products $products)
     {
         //
     }
@@ -75,10 +76,10 @@ class MenuProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MenuProducts  $menuProducts
+     * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MenuProducts $menuProducts)
+    public function destroy(Products $products)
     {
         //
     }

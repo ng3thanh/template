@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\Feedbacks;
+use App\Http\Controllers\Controller;
+use App\Models\Introduces;
 use Illuminate\Http\Request;
 
-class FeedbacksController extends Controller
+class IntroducesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class FeedbacksController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Feedbacks  $feedbacks
+     * @param  \App\Models\Introduces  $introduces
      * @return \Illuminate\Http\Response
      */
-    public function show(Feedbacks $feedbacks)
+    public function show(Introduces $introduces)
     {
         //
     }
@@ -52,10 +53,10 @@ class FeedbacksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Feedbacks  $feedbacks
+     * @param  \App\Models\Introduces  $introduces
      * @return \Illuminate\Http\Response
      */
-    public function edit(Feedbacks $feedbacks)
+    public function edit(Introduces $introduces)
     {
         //
     }
@@ -64,10 +65,10 @@ class FeedbacksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Feedbacks  $feedbacks
+     * @param  \App\Models\Introduces  $introduces
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Feedbacks $feedbacks)
+    public function update(Request $request, Introduces $introduces)
     {
         //
     }
@@ -75,10 +76,10 @@ class FeedbacksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Feedbacks  $feedbacks
+     * @param  \App\Models\Introduces  $introduces
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedbacks $feedbacks)
+    public function destroy(Introduces $introduces)
     {
         //
     }

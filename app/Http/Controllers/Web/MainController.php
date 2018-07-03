@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\Slides;
+use App\Http\Controllers\Controller;
+use App\Models\Feedbacks;
 use Illuminate\Http\Request;
 
-class SlidesController extends Controller
+class MainController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class SlidesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Slides  $slides
+     * @param  \App\Models\Feedbacks  $feedbacks
      * @return \Illuminate\Http\Response
      */
-    public function show(Slides $slides)
+    public function show(Feedbacks $feedbacks)
     {
         //
     }
@@ -52,10 +53,10 @@ class SlidesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Slides  $slides
+     * @param  \App\Models\Feedbacks  $feedbacks
      * @return \Illuminate\Http\Response
      */
-    public function edit(Slides $slides)
+    public function edit(Feedbacks $feedbacks)
     {
         //
     }
@@ -64,10 +65,10 @@ class SlidesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Slides  $slides
+     * @param  \App\Models\Feedbacks  $feedbacks
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Slides $slides)
+    public function update(Request $request, Feedbacks $feedbacks)
     {
         //
     }
@@ -75,10 +76,10 @@ class SlidesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Slides  $slides
+     * @param  \App\Models\Feedbacks  $feedbacks
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slides $slides)
+    public function destroy(Feedbacks $feedbacks)
     {
         //
     }

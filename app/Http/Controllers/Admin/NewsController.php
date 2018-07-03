@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\MenuNews;
+use App\Http\Controllers\Controller;
+use App\Models\News;
 use Illuminate\Http\Request;
 
-class MenuNewsController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class MenuNewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MenuNews  $menuNews
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function show(MenuNews $menuNews)
+    public function show(News $news)
     {
         //
     }
@@ -52,10 +53,10 @@ class MenuNewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MenuNews  $menuNews
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function edit(MenuNews $menuNews)
+    public function edit(News $news)
     {
         //
     }
@@ -64,10 +65,10 @@ class MenuNewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MenuNews  $menuNews
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MenuNews $menuNews)
+    public function update(Request $request, News $news)
     {
         //
     }
@@ -75,10 +76,10 @@ class MenuNewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MenuNews  $menuNews
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MenuNews $menuNews)
+    public function destroy(News $news)
     {
         //
     }
