@@ -103,8 +103,8 @@ class UsersController extends Controller
     /**
      * Display the specified user.
      *
-     * @param  string  $hash
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
@@ -116,8 +116,8 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified user.
      *
-     * @param  string  $hash
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -142,9 +142,9 @@ class UsersController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $hash
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return $this|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -195,13 +195,13 @@ class UsersController extends Controller
     /**
      * Remove the specified user from storage.
      *
-     * @param  string  $hash
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request, $id)
     {
         // Fetch the user object
-        //$id = $this->decode($hash);
         $user = $this->userRepository->findById($id);
 
         // Check to be sure user cannot delete himself

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use DB;
-use Mail;
-use Session;
-use Reminder;
-use Sentinel;
-use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use Centaur\Mail\CentaurPasswordReset;
@@ -15,7 +14,6 @@ use App\Http\Controllers\Controller;
 
 class PasswordController extends Controller
 {
-    /** @var Centaur\AuthManager */
     protected $authManager;
 
     /**
@@ -31,7 +29,8 @@ class PasswordController extends Controller
 
     /**
      * Show the password reset request form
-     * @return View
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getRequest()
     {
@@ -40,7 +39,9 @@ class PasswordController extends Controller
 
     /**
      * Send a password reset link
-     * @return Response|Redirect
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postRequest(Request $request)
     {
@@ -76,9 +77,10 @@ class PasswordController extends Controller
 
     /**
      * Show the password reset form if the reset code is valid
-     * @param  Request $request
-     * @param  string  $code
-     * @return View
+     *
+     * @param Request $request
+     * @param $code
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function getReset(Request $request, $code)
     {
@@ -96,9 +98,10 @@ class PasswordController extends Controller
 
     /**
      * Process a password reset form submission
-     * @param  Request $request
-     * @param  string  $code
-     * @return Response|Redirect
+     *
+     * @param Request $request
+     * @param $code
+     * @return mixed
      */
     public function postReset(Request $request, $code)
     {

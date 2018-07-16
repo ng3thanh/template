@@ -10,7 +10,6 @@ use Centaur\Dispatches\BaseDispatch;
 
 class SessionController extends Controller
 {
-    /** @var Centaur\AuthManager */
     protected $authManager;
 
     /**
@@ -26,7 +25,8 @@ class SessionController extends Controller
 
     /**
      * Show the Login Form
-     * @return View
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getLogin()
     {
@@ -35,21 +35,17 @@ class SessionController extends Controller
 
     /**
      * Handle a Login Request
-     * @return Response|Redirect
+     *
+     * @param Request $request
+     * @return mixed
      */
     public function postLogin(Request $request)
     {
         // Validate the Form Data
-        $result = $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required'
-        ]);
+        $this->validate($request, ['email' => 'required', 'password' => 'required']);
 
         // Assemble Login Credentials
-        $credentials = [
-            'email' => trim($request->get('email')),
-            'password' => $request->get('password'),
-        ];
+        $credentials = ['email' => trim($request->get('email')), 'password' => $request->get('password'),];
         $remember = (bool)$request->get('remember', false);
 
         // Attempt the Login
@@ -62,7 +58,9 @@ class SessionController extends Controller
 
     /**
      * Handle a Logout Request
-     * @return Response|Redirect
+     *
+     * @param Request $request
+     * @return mixed
      */
     public function getLogout(Request $request)
     {

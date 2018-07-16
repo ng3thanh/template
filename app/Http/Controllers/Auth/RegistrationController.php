@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Mail;
-use Session;
-use Sentinel;
-use Activation;
-use App\Http\Requests;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Cartalyst\Sentinel\Sentinel;
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +13,6 @@ use Centaur\Mail\CentaurWelcomeEmail;
 
 class RegistrationController extends Controller
 {
-    /** @var Centaur\AuthManager */
     protected $authManager;
 
     /**
@@ -30,7 +28,8 @@ class RegistrationController extends Controller
 
     /**
      * Show the registration form
-     * @return View
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getRegister()
     {
@@ -40,8 +39,8 @@ class RegistrationController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
-     * @return Response|Redirect
+     * @param Request $request
+     * @return mixed
      */
     protected function postRegister(Request $request)
     {
@@ -81,8 +80,10 @@ class RegistrationController extends Controller
 
     /**
      * Activate a user if they have provided the correct code
-     * @param  string $code
-     * @return Response|Redirect
+     *
+     * @param Request $request
+     * @param $code
+     * @return mixed
      */
     public function getActivate(Request $request, $code)
     {
@@ -118,7 +119,9 @@ class RegistrationController extends Controller
 
     /**
      * Handle a resend activation request
-     * @return Response|Redirect
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postResend(Request $request)
     {
