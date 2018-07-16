@@ -16,27 +16,26 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->namespace('Web')->group(function () {
     Route::get('/', 'MainController@index')->name('main');
 
-    Route::prefix('gioi-thieu')->group(function () {
-        Route::get('danh-sach', 'IntroducesController@index')->name('introduce');
-        Route::get('{slug}-{id}', 'IntroducesController@show')->name('introduce_detail');
+    Route::prefix('introduce')->group(function () {
+        Route::get('list', 'IntroducesController@index')->name('introduce');
+        Route::get('{slug}-{id}', 'IntroducesController@show')->name('introduce.detail');
     });
 
-    Route::prefix('san-pham')->group(function () {
-        Route::get('tim-kiem', 'ProductsController@search')->name('product.search');
-        Route::get('danh-sach/', 'ProductsController@index')->name('product.index');
-        Route::get('danh-sach/{slug}-{menu_id}', 'ProductsController@list')->name('product.list');
+    Route::prefix('product')->group(function () {
+        Route::get('search', 'ProductsController@search')->name('product.search');
+        Route::get('list/', 'ProductsController@index')->name('product.index');
+        Route::get('list/{slug}-{menu_id}', 'ProductsController@list')->name('product.list');
         Route::get('{slug}-{id}', 'ProductsController@show')->name('product.detail');
     });
 
-    Route::prefix('tai-lieu')->group(function () {
-        Route::get('/danh-sach', 'DocumentController@index')->name('document');
-        Route::get('{slug}-{id}', 'DocumentController@show')->name('document_detail');
+    Route::prefix('document')->group(function () {
+        Route::get('/document', 'DocumentController@index')->name('document');
+        Route::get('{slug}-{id}', 'DocumentController@show')->name('document.detail');
     });
 
-    Route::prefix('lien-he')->group(function () {
-        Route::get('/danh-sach', 'ContactController@index')->name('contact');
-        Route::post('/gui-phan-hoi', 'ContactController@feedback')->name('feedback');
-        Route::post('/dang-ki-bao-gia', 'ContactController@mailRegister')->name('mail.register');
+    Route::prefix('contact')->group(function () {
+        Route::get('/list', 'ContactController@index')->name('contact');
+        Route::post('/feedback', 'ContactController@feedback')->name('feedback');
     });
 });
 
@@ -59,7 +58,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         Route::post('edit-menu/{id}', 'ProductController@updateMenu')->name('menu.update');
         Route::post('delete-menu/{id}', 'ProductController@destroyMenu')->name('menu.destroy');
     });
+});
 
-    Route::get('/login', 'LoginController@getLogin')->name('get_login');
-    Route::post('/login', 'LoginController@postLogin')->name('post_login');
+Route::middleware('guest')->namespace('Auth')->group(function () {
+    Route::get('/login', 'LoginController@getLogin')->name('login.get');
+    Route::post('/login', 'LoginController@postLogin')->name('login.post');
 });

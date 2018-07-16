@@ -36,4 +36,31 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function getLogin()
+    {
+        return view('admin.pages.login');
+    }
+
+    public function postLogin(LoginRequest $request)
+    {
+        try {
+            $remember = (bool) $request->get('remember', false);
+            if (Sentinel::authenticate([
+                'email' => $request->email,
+                'password' => $request->password
+            ])) {
+                return Redirect::route('dashboard');
+            } else {
+                $errors = 'Tên đăng nhập hoặc mật khẩu không đúng.';
+            }
+        } catch (NotActivatedException $e) {
+            $errors = 'Tài khoản của bạn chưa được kích hoạt!';
+        } catch (ThrottlingException $e) {
+            $delay = $e->getDelay();
+            $errors = "Tài khoản của bạn bị block trong vòng {$delay} giây.";
+        }
+
+        return Redirect::back()->withInput()->withErrors($errors);
+    }
 }
