@@ -37,6 +37,12 @@ Route::middleware('guest')->namespace('Web')->group(function () {
         Route::get('/list', 'ContactController@index')->name('contact');
         Route::post('/feedback', 'ContactController@feedback')->name('feedback');
     });
+
+    // Users
+    Route::resource('users', 'UserController');
+
+    // Roles
+    Route::resource('roles', 'RoleController');
 });
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
@@ -61,6 +67,23 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 });
 
 Route::middleware('guest')->namespace('Auth')->group(function () {
-    Route::get('/login', 'LoginController@getLogin')->name('login.get');
-    Route::post('/login', 'LoginController@postLogin')->name('login.post');
+    // Authorization
+    Route::get('login', 'SessionController@getLogin')->name('auth.login.form');
+    Route::post('login', 'SessionController@postLogin')->name('auth.login.attempt');
+    Route::any('logout', 'SessionController@getLogout')->name('auth.logout');
+
+// Registration
+    Route::get('register', 'RegistrationController@getRegister')->name('auth.register.form');
+    Route::post('register', 'RegistrationController@postRegister')->name('auth.register.attempt');
+
+// Activation
+    Route::get('activate/{code}', 'RegistrationController@getActivate')->name('auth.activation.attempt');
+    Route::get('resend', 'RegistrationController@getResend')->name('auth.activation.request');
+    Route::post('resend', 'RegistrationController@postResend')->name('auth.activation.resend');
+
+// Password Reset
+    Route::get('password/reset/{code}', 'PasswordController@getReset')->name('auth.password.reset.form');
+    Route::post('password/reset/{code}', 'PasswordController@postReset')->name('auth.password.reset.attempt');
+    Route::get('password/reset', 'PasswordController@getRequest')->name('auth.password.request.form');
+    Route::post('password/reset', 'PasswordController@postRequest')->name('auth.password.request.attempt');
 });
