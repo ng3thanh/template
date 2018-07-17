@@ -72,16 +72,16 @@ Route::middleware('guest')->namespace('Auth')->group(function () {
     Route::post('login', 'SessionController@postLogin')->name('auth.login.attempt');
     Route::any('logout', 'SessionController@getLogout')->name('auth.logout');
 
-// Registration
+    // Registration
     Route::get('register', 'RegistrationController@getRegister')->name('auth.register.form');
     Route::post('register', 'RegistrationController@postRegister')->name('auth.register.attempt');
 
-// Activation
+    // Activation
     Route::get('activate/{code}', 'RegistrationController@getActivate')->name('auth.activation.attempt');
     Route::get('resend', 'RegistrationController@getResend')->name('auth.activation.request');
     Route::post('resend', 'RegistrationController@postResend')->name('auth.activation.resend');
 
-// Password Reset
+    // Password Reset
     Route::get('password/reset/{code}', 'PasswordController@getReset')->name('auth.password.reset.form');
     Route::post('password/reset/{code}', 'PasswordController@postReset')->name('auth.password.reset.attempt');
     Route::get('password/reset', 'PasswordController@getRequest')->name('auth.password.request.form');
