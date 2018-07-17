@@ -1,0 +1,28 @@
+.short-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+}
+
+.header-table {
+	background-color: gray;
+	color: #fff;
+}
+
+.header-table:hover {
+	background-color: gray !important;
+	color: #fff !important;
+}
+
+.header-table th {
+	text-align: center;
+}
+
+.body-table td {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left !important;
+}
