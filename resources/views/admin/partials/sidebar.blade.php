@@ -1,3 +1,16 @@
+@php
+    $dashboardActive = \Request::route()->getName() == 'dashboard' ? 'active' : '';
+    $serviceIndexActive = \Request::route()->getName() == 'services.index' ? 'active' : '';
+    $serviceCreateActive = \Request::route()->getName() == 'services.create' ? 'active' : '';
+    $serviceActive = (!empty($serviceIndexActive) || !empty($serviceCreateActive)) ? 'active' : '';
+    $clientIndexActive = \Request::route()->getName() == 'clients.index' ? 'active' : '';
+    $clientCreateActive = \Request::route()->getName() == 'clients.create' ? 'active' : '';
+    $clientActive = (!empty($clientIndexActive) || !empty($clientCreateActive)) ? 'active' : '';
+    $blogIndexActive = \Request::route()->getName() == 'blog.index' ? 'active' : '';
+    $blogCreateActive = \Request::route()->getName() == 'blog.create' ? 'active' : '';
+    $blogActive = (!empty($blogIndexActive) || !empty($blogCreateActive)) ? 'active' : '';
+@endphp
+
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
@@ -18,7 +31,7 @@
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <input type="text" name="search_all" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
 					<button type="submit" name="search" id="search-btn" class="btn btn-flat">
 						<i class="fa fa-search"></i>
@@ -32,69 +45,76 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
 
-            <li class="header">DANH MỤC</li>
+            <li class="header">SIDEBAR MENU</li>
 
-            <li class="active treeview">
+            <li class="{{ $dashboardActive }}">
                 <a href="{{ route('dashboard') }}">
                     <i class="fa fa-dashboard"></i>
-                    <span> Trang quản lý</span>
+                    <span> Dashboard</span>
                 </a>
             </li>
 
-            <li class="treeview">
+            <li class="treeview {{ $serviceActive }}">
                 <a href="#">
                     <i class="fa fa-users"></i>
-                    <span> Tin tức</span>
+                    <span> Services</span>
                     <span class="pull-right-container"> 
 						<i class="fa fa-angle-left pull-right"></i>
 					</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('news.index') }}">
-                            <i class="fa fa-circle-o"></i> Danh sách tin tức
+                    <li class="{{ $serviceIndexActive }}">
+                        <a href="{{ route('services.index') }}">
+                            <i class="fa fa-circle-o"></i> Services index
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('news.create') }}">
-                            <i class="fa fa-plus-circle"></i> Thêm mới tin tức
+                    <li class="{{ $serviceCreateActive }}">
+                        <a href="{{ route('services.create') }}">
+                            <i class="fa fa-plus-circle"></i> Add service
                         </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview {{ $clientActive }}">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span> Clients</span>
+                    <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ $clientIndexActive }}">
+                        <a href="{{ route('clients.index') }}">
+                            <i class="fa fa-circle-o"></i> Clients index
+                        </a>
+                    </li>
+                    <li class="{{ $clientCreateActive }}">
+                        <a href="{{ route('clients.create') }}">
+                            <i class="fa fa-plus-circle"></i> Add client
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview {{ $blogActive }}">
                 <a href="#">
                     <i class="fa fa-calendar"></i>
-                    <span> Sản phẩm</span>
+                    <span> Blogs</span>
                     <span class="pull-right-container"> 
 						<i class="fa fa-angle-left pull-right"></i>
 					</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('menu.index') }}">
-                            <i class="fa fa-asterisk"></i> Danh sách menu
+                    <li class="{{ $blogIndexActive }}">
+                        <a href="{{ route('blog.index') }}">
+                            <i class="fa fa-asterisk"></i> Blogs index
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('menu.create') }}">
-                            <i class="fa fa-edit"></i> Thêm mới menu
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('product.index') }}">
-                            <i class="fa fa-list"></i> Danh mục sản phẩm
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('product.order') }}">
-                            <i class="fa fa-wifi"></i> Sắp xếp sản phẩm
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('product.create') }}">
-                            <i class="fa fa-plus-circle"></i> Thêm mới sản phẩm
+                    <li class="{{ $blogCreateActive }}">
+                        <a href="{{ route('blog.create') }}">
+                            <i class="fa fa-edit"></i> Add blog
                         </a>
                     </li>
                 </ul>
@@ -102,41 +122,51 @@
 
             <li class="treeview">
                 <a href="#"> <i class="fa fa-usd"></i>
-                    <span> Liên hệ</span>
+                    <span> Contact</span>
                     <span class="pull-right-container"> 
 						<i class="fa fa-angle-left pull-right"></i>
         			</span>
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="#">
-                            <i class="fa fa-circle-o"></i>General Elements
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-circle-o"></i>General Elements
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-circle-o"></i>General Elements
+                        <a href="{{ route('contact.index') }}">
+                            <i class="fa fa-circle-o"></i> Contact index
                         </a>
                     </li>
                 </ul>
             </li>
 
-            <li>
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-cubes"></i>
-                    <span> Thiết lập</span>
-                    <span class="pull-right-container"> 
-						<small class="label pull-right bg-red">3</small> 
-						<small class="label pull-right bg-blue">17</small>
-					</span>
+                    <span> Setting</span>
+                    <span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+        			</span>
                 </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('slide.index') }}">
+                            <i class="fa fa-circle-o"></i> Background slide
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('footer.index') }}">
+                            <i class="fa fa-circle-o"></i> Footer info
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('introduce.index') }}">
+                            <i class="fa fa-circle-o"></i> Introduce
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logo.index') }}">
+                            <i class="fa fa-circle-o"></i> Logo
+                        </a>
+                    </li>
+                </ul>
             </li>
-
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -1,0 +1,47 @@
+/* === Blog list section === */
+
+#blog-list {
+    background-color: #212529;
+}
+
+#blog-list #blog-title-all {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+#blog-list #blog .post .pre-content {
+    background-color:  #fff;
+    padding: 10px;
+}
+
+#blog-list #blog .post .pre-content .blog-image {
+    text-align: center;
+}
+
+#blog-list #blog .post .pre-content .blog-detail .blog-title .h4{
+    font-size: 18px;
+    font-weight: bold;
+    word-spacing: 0.05em;
+    line-height: 1.4em;
+    padding-top: 10px;
+    margin:  0 10px 20px 10px;
+}
+
+#blog-list #blog .post .pre-content .blog-detail .blog-created {
+
+}
+
+#blog-list #blog .post .pre-content .blog-detail .blog-tag {
+
+}
+
+#blog-list #blog .post .pre-content .blog-detail .blog-content {
+    font-size: 13px;
+    word-spacing: 0.07em;
+    line-height: 1.8em;
+    margin: 0 10px 20px 10px;
+}

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin | @yield('title')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">
+    <link rel="icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">
     @include('admin.assets.css')
     @yield('css')
 </head>

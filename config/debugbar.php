@@ -21,7 +21,7 @@ return [
 
     /*
      |--------------------------------------------------------------------------
-     | Storage settings
+     | Storage setting
      |--------------------------------------------------------------------------
      |
      | DebugBar stores data for session/ajax requests.
@@ -120,7 +120,7 @@ return [
         'default_request' => false, // Regular or special Symfony request logger
         'logs'            => false, // Add the latest log messages
         'files'           => false, // Show the included files
-        'config'          => false, // Display config settings
+        'config'          => false, // Display config setting
         'cache'           => false, // Display cache events
     ],
 

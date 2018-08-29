@@ -2548,7 +2548,7 @@ a:focus {
 }
 .nav-tabs-custom > .tab-content {
   background: #fff;
-  padding: 10px;
+  padding: 30px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }

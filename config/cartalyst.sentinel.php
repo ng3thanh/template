@@ -187,7 +187,7 @@ return [
     | Throttling
     |--------------------------------------------------------------------------
     |
-    | Here, you may configure your site's throttling settings. There are three
+    | Here, you may configure your site's throttling setting. There are three
     | types of throttling.
     |
     | The first type is "global". Global throttling will monitor the overall

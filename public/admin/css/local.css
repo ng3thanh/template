@@ -1,8 +1,8 @@
 .short-text {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: block;
+	/*white-space: nowrap;*/
+	/*overflow: hidden;*/
+	/*text-overflow: ellipsis;*/
+	display: inline;
 }
 
 .header-table {
@@ -25,4 +25,71 @@
 
 .text-left {
 	text-align: left !important;
+}
+
+.span-red {
+	color: #a94442;
+}
+
+.required-text-box {
+	padding-top: 4px;
+}
+
+.button-list {
+	margin-top: 40px;
+	margin-bottom: 10px;
+	padding-top: 20px
+}
+
+.invalid-feedback {
+	color: #e5020c;
+	font-weight: bold;
+	font-size: 0.87em;
+}
+
+.form-control.is-invalid,
+.custom-select.is-invalid,
+.form-check-input.is-invalid ~ .form-check-label,
+.custom-control-input.is-invalid ~ .custom-control-label,
+.custom-file-input.is-invalid ~ .custom-file-label {
+	border-color: #dc3545 !important;
+}
+
+.form-control.is-invalid:focus,
+.custom-select.is-invalid:focus {
+	border-color: #dc3545 !important;
+	-webkit-box-shadow: 0 0 0 0.2rem #e7bdc1 !important;
+	box-shadow: 0 0 0 0.2rem #e7bdc1 !important;
+}
+
+.custom-control-input.is-invalid ~ .custom-control-label::before {
+	background-color: #efa2a9 !important;
+}
+
+.custom-control-input.is-invalid:checked ~ .custom-control-label::before {
+	background-color: #e4606d !important;
+}
+
+.m-w-100{
+	max-width: 100px;
+}
+
+.m-w-200{
+	max-width: 200px;
+}
+
+.m-w-300{
+	max-width: 300px;
+}
+
+.m-w-400{
+	max-width: 400px;
+}
+
+.m-w-500{
+	max-width: 500px;
+}
+
+.deleted_tr{
+	background-color: #f5f5f5;
 }

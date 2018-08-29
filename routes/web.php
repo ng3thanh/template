@@ -14,55 +14,67 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::middleware('guest')->namespace('Web')->group(function () {
-    Route::get('/', 'MainController@index')->name('main');
+    Route::group(['middleware' => 'locale'], function() {
+        Route::get('/', 'MainController@index')->name('main');
 
-    Route::prefix('introduce')->group(function () {
-        Route::get('list', 'IntroducesController@index')->name('introduce');
-        Route::get('{slug}-{id}', 'IntroducesController@show')->name('introduce.detail');
+        // Send contact
+        Route::post('feedback', 'FeedbacksController@store')->name('feedbacks.store');
+
+        // Blogs
+        Route::prefix('blogs')->group(function () {
+            Route::get('list/', 'BlogsController@index')->name('blogs.index');
+            Route::get('{id}/{slug}', 'BlogsController@show')->name('blogs.detail');
+        });
+
+        Route::prefix('services')->group(function () {
+            Route::get('{id}/{slug}', 'ServicesController@show')->name('services.detail');
+        });
+
+        Route::get('change-language/{language}', 'MainController@changeLanguage')->name('user.change-language');
     });
-
-    Route::prefix('product')->group(function () {
-        Route::get('search', 'ProductsController@search')->name('product.search');
-        Route::get('list/', 'ProductsController@index')->name('product.index');
-        Route::get('list/{slug}-{menu_id}', 'ProductsController@list')->name('product.list');
-        Route::get('{slug}-{id}', 'ProductsController@show')->name('product.detail');
-    });
-
-    Route::prefix('document')->group(function () {
-        Route::get('/document', 'DocumentController@index')->name('document');
-        Route::get('{slug}-{id}', 'DocumentController@show')->name('document.detail');
-    });
-
-    Route::prefix('contact')->group(function () {
-        Route::get('/list', 'ContactController@index')->name('contact');
-        Route::post('/feedback', 'ContactController@feedback')->name('feedback');
-    });
-
-    // Users
-    Route::resource('users', 'UserController');
-
-    // Roles
-    Route::resource('roles', 'RoleController');
 });
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::prefix('management')->middleware('admin')->group(function () {
         Route::get('/', 'MainController@index')->name('dashboard');
 
-        Route::resource('product', 'ProductController');
         Route::resource('news', 'NewsController');
-        Route::resource('contact', 'ContactController');
         Route::resource('user', 'UserController');
 
-        Route::get('copy-product/{id}', 'ProductController@copy')->name('product.copy');
-        Route::get('order-product', 'ProductController@order')->name('product.order');
-        Route::post('change-order-product', 'ProductController@changeOrder')->name('product.change.order');
-        Route::get('list-menu', 'ProductController@listMenu')->name('menu.index');
-        Route::get('create-menu', 'ProductController@createMenu')->name('menu.create');
-        Route::get('edit-menu/{id}', 'ProductController@editMenu')->name('menu.edit');
-        Route::post('create-menu', 'ProductController@storeMenu')->name('menu.store');
-        Route::post('edit-menu/{id}', 'ProductController@updateMenu')->name('menu.update');
-        Route::post('delete-menu/{id}', 'ProductController@destroyMenu')->name('menu.destroy');
+        // Contact
+        Route::get('contact/index', 'ContactsController@index')->name('contact.index');
+        Route::get('contact/show/{id}', 'ContactsController@show')->name('contact.show');
+
+        // Services
+        Route::resource('services', 'ServicesController');
+
+        // Blogs
+        Route::resource('blog', 'BlogsController');
+        Route::post('blog/restore/{id}', 'BlogsController@restore')->name('blog.restore');
+        Route::get('blog/copy/{id}', 'BlogsController@copy')->name('blog.copy');
+
+        // Clients
+        Route::resource('clients', 'ClientsController');
+
+        // Settings
+        // Slides
+        Route::get('/slide/index', 'SettingsController@slideIndex')->name('slide.index');
+        Route::post('/slide/store', 'SettingsController@slideStore')->name('slide.store');
+        Route::get('/slide/choose/{id}', 'SettingsController@slideChoose')->name('slide.choose');
+
+        // Footer
+        Route::get('footer/index', 'SettingsController@footerIndex')->name('footer.index');
+        Route::post('footer/update', 'SettingsController@footerUpdate')->name('footer.update');
+        Route::post('footer/new', 'SettingsController@footerStore')->name('footer.store');
+        Route::post('footer/delete/{id}', 'SettingsController@footerDelete')->name('footer.delete');
+
+        // Introduce
+        Route::get('introduce/index', 'SettingsController@introduceIndex')->name('introduce.index');
+        Route::post('introduce/update/{id}', 'SettingsController@introduceUpdate')->name('introduce.update');
+
+        // Logo
+        Route::get('logo/index', 'SettingsController@logoIndex')->name('logo.index');
+        Route::post('logo/update', 'SettingsController@logoUpdate')->name('logo.update');
     });
 });
 
