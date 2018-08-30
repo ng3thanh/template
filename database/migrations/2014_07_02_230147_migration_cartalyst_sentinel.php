@@ -98,13 +98,22 @@ class MigrationCartalystSentinel extends Migration
             $table->string('username');
             $table->string('email');
             $table->string('password');
-            $table->text('permissions')->nullable();
-            $table->timestamp('last_login')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('credit_card_type')->nullable();
+            $table->string('credit_card_number')->nullable();
+            $table->date('credit_card_expiration_date')->nullable();
+            $table->text('credit_card_details')->nullable();
+            $table->text('permissions')->nullable();
+            $table->timestamp('last_login')->nullable();
+            $table->string('remember_token')->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
             $table->unique('email');
+            $table->softDeletes();
         });
     }
 

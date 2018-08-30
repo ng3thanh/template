@@ -13,8 +13,8 @@
         <link rel="stylesheet" href="{{ asset('admin/css/ionicons.min.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('admin/dist/css/AdminLTE.min.css') }}">
-        <link rel="shortcut icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">
-        <link rel="icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">
+        {{--<link rel="shortcut icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">--}}
+        {{--<link rel="icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">--}}
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">

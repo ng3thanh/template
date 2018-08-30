@@ -12,7 +12,6 @@ class IntroduceDatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        DB::table('introduces')->truncate();
         $dataIntroduce = [
             'image' => 'introduce',
             'created_at' => date('Y-m-d H:i:s'),
