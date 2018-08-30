@@ -50,9 +50,10 @@ class SessionController extends Controller
 
         // Attempt the Login
         $result = $this->authManager->authenticate($credentials, $remember);
+        $url = route('dashboard');
 
         // Return the appropriate response
-        $path = session()->pull(route('dashboard'));
+        $path = session()->pull('url.intended', $url);
         return $result->dispatch($path);
     }
 
@@ -69,6 +70,7 @@ class SessionController extends Controller
         $result = $this->authManager->logout(null, null);
 
         // Return the appropriate response
-        return $result->dispatch(route('dashboard'));
+        $url = route('dashboard');
+        return $result->dispatch($url);
     }
 }

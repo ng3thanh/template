@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Slides extends Model
+class ServicesTranslation extends Model
 {
-    use SoftDeletes;
-
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'slides';
+    protected $table = 'services_translate';
 
     /**
      * @var array
@@ -24,6 +23,5 @@ class Slides extends Model
     /**
      * @var boolean
      */
-    public $timestamps = true;
+    public $timestamps = false;
 }
-

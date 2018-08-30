@@ -3,84 +3,36 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Feedbacks;
+use App\Services\FeedbackService;
 use Illuminate\Http\Request;
 
 class FeedbacksController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var FeedbackService
      */
-    public function index()
-    {
-        //
-    }
+    protected $feedbackService;
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * FeedbacksController constructor.
+     * @param FeedbackService $feedbackService
      */
-    public function create()
-    {
-        //
+    public function __construct(
+        FeedbackService $feedbackService
+    ) {
+        $this->feedbackService = $feedbackService;
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+        $this->feedbackService->createFeebackFromCustomer($data);
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Feedbacks  $feedbacks
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Feedbacks $feedbacks)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Feedbacks  $feedbacks
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Feedbacks $feedbacks)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Feedbacks  $feedbacks
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Feedbacks $feedbacks)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Feedbacks  $feedbacks
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Feedbacks $feedbacks)
-    {
-        //
-    }
 }

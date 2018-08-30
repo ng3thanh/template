@@ -4,13 +4,6 @@ namespace App\Repositories\Base;
 
 abstract class BaseEloquentRepository implements BaseRepositoryInterface
 {
-
-    /**
-     * ***********************************
-     * ************ SET MODEL ************
-     * ***********************************
-     */
-
     /**
      * @var \Illuminate\Database\Eloquent\Model
      */
@@ -41,15 +34,18 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
     }
 
     /**
-     * ***********************************
-     * ********** GET ALL DATA ***********
-     * ***********************************
+     * Get first data base on order
+     * @param $orderBy
+     * @return mixed
      */
+    public function getDataOrderBy($orderBy)
+    {
+        return $this->model->orderBy($orderBy);
+    }
 
     /**
-     * Get all
-     *
-     * @return mixed
+     * Get All
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getAll()
     {
@@ -58,54 +54,36 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
 
     /**
      * Get all with paginate
-     *
-     * @param $limit
-     * @param string $orderBy
      * @return mixed
      */
-    public function getAllPaginate($limit, $orderBy = 'created_at')
+    public function getAllPaginate($limit)
     {
-        return $this->model->orderBy($orderBy)->paginate($limit);
+        return $this->model->paginate($limit);
     }
 
     /**
      * Get all paginate with trash
-     *
      * @param $limit
-     * @param string $orderBy
      * @return mixed
      */
-    public function getAllPaginateWithTrash($limit, $orderBy = 'created_at')
+    public function getAllPaginateWithTrash($limit)
     {
-        $result = $this->model->withTrashed()->orderBy($orderBy)->paginate($limit);
+        $result = $this->model->withTrashed()->orderBy('deleted_at')->paginate($limit);
         return $result;
     }
 
     /**
-     * Get first data base on order
-     *
-     * @param $orderBy
-     * @return mixed
-     */
-    public function getDataOrderBy($orderBy = 'created_at')
-    {
-        return $this->model->orderBy($orderBy);
-    }
-
-    /**
      * Get random data
-     *
      * @param $number
      * @return mixed
      */
     public function getSomeRandomData($number)
     {
-        return $this->model->inRandomOrder()->limit($number);
+        return $this->model->inRandomOrder()->limit($number)->get();
     }
 
     /**
      * Get data with offset and limit
-     *
      * @param $offset
      * @param $limit
      * @return mixed
@@ -120,14 +98,7 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
     }
 
     /**
-     * ***********************************
-     * ********** GET ONE DATA ***********
-     * ***********************************
-     */
-
-    /**
      * Get one
-     *
      * @param $id
      * @return mixed
      */
@@ -139,7 +110,6 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
 
     /**
      * Get one with trash
-     *
      * @param $id
      * @return mixed
      */
@@ -150,14 +120,7 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
     }
 
     /**
-     * ***********************************
-     * ********** CREATE DATA ************
-     * ***********************************
-     */
-
-    /**
-     * Create one
-     *
+     * Create
      * @param array $attributes
      * @return mixed
      */
@@ -167,31 +130,7 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
     }
 
     /**
-     * Multi create
-     *
-     * @param array $data
-     * @return mixed
-     */
-    public function multiCreate($data)
-    {
-        if (!empty($data)) {
-            foreach($data as $attributes) {
-                $this->model->create($attributes);
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * ***********************************
-     * ********** UPDATE DATA ************
-     * ***********************************
-     */
-
-    /**
-     * Update one
-     *
+     * Update
      * @param $id
      * @param array $attributes
      * @return bool|mixed
@@ -207,28 +146,7 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
     }
 
     /**
-     * Update translate
-     *
-     * @param $idColumn
-     * @param $id
-     * @param $locale
-     * @param $data
-     * @return mixed
-     */
-    public function updateTrans($idColumn, $id, $locale, $data)
-    {
-        $result = $this->model->where($idColumn, $id)->where('locale', $locale)->update($data);
-        return $result;
-    }
-
-    /**
-     * ***********************************
-     * ********** DELETE DATA ************
-     * ***********************************
-     */
-
-    /**
-     * Delete soft by soft delete
+     * Delete
      *
      * @param $id
      * @return bool
@@ -240,33 +158,12 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
             $result->delete();
             return true;
         }
+
         return false;
     }
 
-    /**
-     * Delete soft by destroy
-     *
-     * @param $id
-     * @return bool
-     */
-    public function destroy($id)
-    {
-        $result = $this->find($id);
-        if ($result) {
-            $result->forceDelete();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * ***********************************
-     * ********** RESTORE DATA ***********
-     * ***********************************
-     */
     /**
      * Restore
-     *
      * @param $id
      * @return mixed
      */
@@ -277,17 +174,29 @@ abstract class BaseEloquentRepository implements BaseRepositoryInterface
             $result->restore();
             return true;
         }
+
         return false;
     }
 
     /**
-     * Count all
-     *
      * @return int|mixed
      */
     public function countAll()
     {
         $result = $this->model->all()->count();
+        return $result;
+    }
+
+    /**
+     * @param $idColumn
+     * @param $id
+     * @param $locale
+     * @param $data
+     * @return mixed
+     */
+    public function updateTrans($idColumn, $id, $locale, $data)
+    {
+        $result = $this->model->where($idColumn, $id)->where('locale', $locale)->update($data);
         return $result;
     }
 }

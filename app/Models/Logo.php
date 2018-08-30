@@ -3,18 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Slides extends Model
+class Logo extends Model
 {
-    use SoftDeletes;
-
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'slides';
+    protected $table = 'logo';
 
     /**
      * @var array
@@ -26,4 +23,3 @@ class Slides extends Model
      */
     public $timestamps = true;
 }
-

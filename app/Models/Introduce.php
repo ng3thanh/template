@@ -2,19 +2,24 @@
 
 namespace App\Models;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Slides extends Model
+class Introduce extends Model
 {
     use SoftDeletes;
+
+    use Translatable;
+
+    public $translatedAttributes = ['name', 'content'];
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'slides';
+    protected $table = 'introduces';
 
     /**
      * @var array
@@ -26,4 +31,3 @@ class Slides extends Model
      */
     public $timestamps = true;
 }
-

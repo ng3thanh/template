@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Logo;
+use App\Models\Settings;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $footer = Settings::all()->groupBy('type');
+        $logo = Logo::all()->first();
+        View::share('footer', $footer);
+        View::share('logo', $logo);
     }
 
     /**
@@ -23,12 +29,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $repositories = ['Base', 'Feedbacks', 'Introduces', 'MenuNews', 'MenuProducts', 'News', 'Products', 'Slides'];
+        $repositories = [
+            'Base', 'Blogs', 'Slides', 'Footers', 'Services', 'Introduces', 'Clients', 'Feedbacks',
+            'BlogsTranslate', 'ServicesTranslate', 'IntroducesTranslate', 'Logo'
+        ];
 
-        foreach ($repositories as $value) {
-            $this->app->singleton(
-                'App/Repositories/' . $value . '/' . $value . 'RepositoryInterface::class',
-                'App/Repositories/' . $value . '/' . $value . 'EloquentRepository::class'
+        foreach ($repositories as $model) {
+            $this->app->bind(
+                "App\Repositories\\{$model}\\{$model}RepositoryInterface",
+                "App\Repositories\\{$model}\\{$model}EloquentRepository"
             );
         }
     }

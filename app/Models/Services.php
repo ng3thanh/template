@@ -2,24 +2,28 @@
 
 namespace App\Models;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Feedbacks extends Model
+class Services extends Model
 {
-    const UNREAD = 0;
-    const READ = 1;
-    const REPLY = 2;
-    const DONE = 3;
+    const STATUS_UNCONFIRMED = 0;
+    const STAR_START = 5;
+    const VOTE_COUNT_START = 0;
 
     use SoftDeletes;
+
+    use Translatable;
+
+    public $translatedAttributes = ['name', 'slug', 'description', 'content'];
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'feedbacks';
+    protected $table = 'services';
 
     /**
      * Default value
@@ -27,7 +31,9 @@ class Feedbacks extends Model
      * @var array
      */
     protected $attributes = [
-        'status' => self::UNREAD,
+        'status' => self::STATUS_UNCONFIRMED,
+        'star' => self::STAR_START,
+        'vote' => self::VOTE_COUNT_START,
     ];
 
     /**

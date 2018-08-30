@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Slides extends Model
+class Settings extends Model
 {
     use SoftDeletes;
 
@@ -14,7 +15,7 @@ class Slides extends Model
      *
      * @var string
      */
-    protected $table = 'slides';
+    protected $table = 'settings';
 
     /**
      * @var array

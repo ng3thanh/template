@@ -3,18 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Slides extends Model
+class BlogsTranslation extends Model
 {
-    use SoftDeletes;
-
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'slides';
+    protected $table = 'blogs_translate';
 
     /**
      * @var array
@@ -24,6 +21,5 @@ class Slides extends Model
     /**
      * @var boolean
      */
-    public $timestamps = true;
+    public $timestamps = false;
 }
-
