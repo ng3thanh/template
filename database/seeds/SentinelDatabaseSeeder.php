@@ -92,11 +92,11 @@ class SentinelDatabaseSeeder extends Seeder
 //        $subscriberRole->users()->attach($user);
 
         $users = factory(Users::class, 50)->create()->each(function ($user) use ($userRole) {
-//            $code = Activation::create($user)->code;
-//            Activation::complete($user, $code);
             $userRole->users()->attach($user);
         });
 
-
+//        $user = $users->first();
+//        $code = Activation::create($user)->code;
+//        Activation::complete($user, $code);
     }
 }
