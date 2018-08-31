@@ -30,8 +30,6 @@ class FooterDatabaseSeeder extends Seeder
                     'updated_at' => date('Y-m-d H:i:s'),
                 ]);
             }
-
         }
-
     }
 }

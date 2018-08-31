@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Logo;
 use App\Models\Settings;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         $logo = Logo::all()->first();
         View::share('footer', $footer);
         View::share('logo', $logo);
+        view()->share( 'loggedUser', Sentinel::getUser() );
     }
 
     /**

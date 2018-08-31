@@ -7,7 +7,7 @@ use App\Services\BlogService;
 use App\Services\ClientService;
 use App\Services\FeedbackService;
 use App\Services\ServiceService;
-use Illuminate\Http\Request;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 class MainController extends Controller
 {
@@ -59,6 +59,7 @@ class MainController extends Controller
      */
     public function index()
     {
+//        dd(Sentinel::getUser());
         $blogCount = $this->blogService->countBlog();
 //        $clientCount = $this->clientService->countClient();
         $clientCount = 0;

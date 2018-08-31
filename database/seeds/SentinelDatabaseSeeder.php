@@ -10,8 +10,6 @@ class SentinelDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -89,14 +87,27 @@ class SentinelDatabaseSeeder extends Seeder
         // Assign Roles to Users
         $administratorRole->users()->attach($admin);
         $moderatorRole->users()->attach($mod);
-//        $subscriberRole->users()->attach($user);
 
-        $users = factory(Users::class, 50)->create()->each(function ($user) use ($userRole) {
-            $userRole->users()->attach($user);
+        $users = factory(Users::class, 50)->create()->each(function ($user) use ($subscriberRole, $userRole) {
+            $data = [
+                'user_id' => $userId = $user->id,
+                'code' => $this->generateRandomString(32),
+                'completed' => 1,
+                'completed_at' => date('Y-m-d H:i:s'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            DB::table('activations')->insert($data);
+
+            if ($user->id == 3) {
+                $subscriberRole->users()->attach($user);
+            } else {
+                $userRole->users()->attach($user);
+            }
         });
+    }
 
-//        $user = $users->first();
-//        $code = Activation::create($user)->code;
-//        Activation::complete($user, $code);
+    function generateRandomString($length = 10) {
+        return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
     }
 }
