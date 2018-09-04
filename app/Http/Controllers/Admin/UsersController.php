@@ -229,10 +229,4 @@ class UsersController extends Controller
         session()->flash('success', $message);
         return redirect()->route('users.index');
     }
-
-    public function profile()
-    {
-        $user = Sentinel::getUser();
-        dd($user);
-    }
 }

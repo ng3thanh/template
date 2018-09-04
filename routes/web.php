@@ -42,7 +42,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
         // Users
         Route::resource('users', 'UsersController');
-        Route::get('users/profile', 'UsersController@profile')->name('users.profile');
+        Route::get('user/profile', 'UserController@profile')->name('user.profile');
 
         // Contact
         Route::get('contact/index', 'ContactsController@index')->name('contact.index');
