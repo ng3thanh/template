@@ -59,7 +59,6 @@ class MainController extends Controller
      */
     public function index()
     {
-//        dd(Sentinel::getUser());
         $blogCount = $this->blogService->countBlog();
 //        $clientCount = $this->clientService->countClient();
         $clientCount = 0;

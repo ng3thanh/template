@@ -16,6 +16,7 @@ class Admin
         if (Sentinel::guest() || !(Sentinel::inRole('administrator') || Sentinel::inRole('moderator'))) {
             return redirect()->route('auth.login.form');
         }
+        view()->share('loggedUser', Sentinel::getUser());
         return $next($request);
     }
 }
