@@ -209,9 +209,14 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                            @if($loggedUser->avatar)
+                                <img src='{{  asset("$loggedUser->avatar") }}' class="img-circle" alt="User Image">
+                            @else
+                                <img src='{{  asset("admin/dist/img/user2-160x160.jpg") }}' class="img-circle" alt="User Image">
+                            @endif
+
                             <p>
-                                Admin System - <small>Admin since Nov. 2017</small>
+                                {{ $loggedUser->first_name . ' ' . $loggedUser->last_name }} - <small>{{ getRoleOfUser($loggedUser->id) }} since {{ timeFormatTextDate($loggedUser->created_at) }}</small>
                             </p>
                         </li>
 
@@ -231,7 +236,7 @@
 
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('users.profile') }}" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
                                 <a href="{{ route('auth.logout') }}" class="btn btn-default btn-flat">Sign out</a>

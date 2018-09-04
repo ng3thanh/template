@@ -1,13 +1,13 @@
 @php
-    $dashboardActive = \Request::route()->getName() == 'dashboard' ? 'active' : '';
-    $serviceIndexActive = \Request::route()->getName() == 'services.index' ? 'active' : '';
-    $serviceCreateActive = \Request::route()->getName() == 'services.create' ? 'active' : '';
+    $dashboardActive = request()->route()->getName() == 'dashboard' ? 'active' : '';
+    $serviceIndexActive = request()->route()->getName() == 'services.index' ? 'active' : '';
+    $serviceCreateActive = request()->route()->getName() == 'services.create' ? 'active' : '';
     $serviceActive = (!empty($serviceIndexActive) || !empty($serviceCreateActive)) ? 'active' : '';
-    $clientIndexActive = \Request::route()->getName() == 'clients.index' ? 'active' : '';
-    $clientCreateActive = \Request::route()->getName() == 'clients.create' ? 'active' : '';
+    $clientIndexActive = request()->route()->getName() == 'clients.index' ? 'active' : '';
+    $clientCreateActive = request()->route()->getName() == 'clients.create' ? 'active' : '';
     $clientActive = (!empty($clientIndexActive) || !empty($clientCreateActive)) ? 'active' : '';
-    $blogIndexActive = \Request::route()->getName() == 'blog.index' ? 'active' : '';
-    $blogCreateActive = \Request::route()->getName() == 'blog.create' ? 'active' : '';
+    $blogIndexActive = request()->route()->getName() == 'blog.index' ? 'active' : '';
+    $blogCreateActive = request()->route()->getName() == 'blog.create' ? 'active' : '';
     $blogActive = (!empty($blogIndexActive) || !empty($blogCreateActive)) ? 'active' : '';
 @endphp
 
@@ -20,10 +20,14 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                @if($loggedUser->avatar)
+                    <img src='{{  asset("$loggedUser->avatar") }}' class="img-circle" alt="User Image">
+                @else
+                    <img src='{{  asset("admin/dist/img/user2-160x160.jpg") }}' class="img-circle" alt="User Image">
+                @endif
             </div>
             <div class="pull-left info">
-                <p>Admin System</p>
+                <p>{{ $loggedUser->first_name . ' ' . $loggedUser->last_name }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

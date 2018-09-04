@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
-
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 if (!function_exists('checkIsNullOrEmpty')) {
     /**
@@ -257,5 +257,22 @@ if (!function_exists('cutStringWithLongText')) {
         } else {
             return $string;
         }
+    }
+}
+
+if (!function_exists('getRoleOfUser')) {
+    /**
+     * @param $id
+     * @return mixed
+     */
+    function getRoleOfUser($id)
+    {
+        $role = Sentinel::findRoleById($id);
+        if ($role) {
+            return $role->name;
+        } else {
+            return '';
+        }
+
     }
 }

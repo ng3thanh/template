@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Centaur\AuthManager;
@@ -227,5 +228,11 @@ class UsersController extends Controller
 
         session()->flash('success', $message);
         return redirect()->route('users.index');
+    }
+
+    public function profile()
+    {
+        $user = Sentinel::getUser();
+        dd($user);
     }
 }

@@ -7,4 +7,5 @@ return [
     'client' => 'upload/clients/',
     'introduce' => 'upload/introduces/',
     'logo' => 'upload/logo/',
+    'avatar' => 'upload/avatar/',
 ];

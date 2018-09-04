@@ -39,7 +39,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         Route::get('/', 'MainController@index')->name('dashboard');
 
         Route::resource('news', 'NewsController');
-        Route::resource('user', 'UserController');
+
+        // Users
+        Route::resource('users', 'UsersController');
+        Route::get('users/profile', 'UsersController@profile')->name('users.profile');
 
         // Contact
         Route::get('contact/index', 'ContactsController@index')->name('contact.index');
