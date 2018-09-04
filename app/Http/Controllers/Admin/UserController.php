@@ -17,8 +17,6 @@ class UserController extends Controller
 
     public function profile()
     {
-        $user = Sentinel::getUser();
         return view('admin.pages.users.profile');
-        dd($user);
     }
 }

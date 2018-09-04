@@ -276,3 +276,19 @@ if (!function_exists('getRoleOfUser')) {
 
     }
 }
+
+if (!function_exists('getAvatarUser')) {
+    /**
+     * @param $avatar
+     * @return string
+     */
+    function getAvatarUser($avatar)
+    {
+        if ($avatar) {
+            return $avatar;
+        } else {
+            return config('upload.avatar') . "default.png";
+        }
+
+    }
+}

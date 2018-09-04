@@ -204,16 +204,12 @@
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+                        <img src='{{ asset(getAvatarUser("$loggedUser->avatar")) }}' class="user-image" alt="User Image">
                         <span class="hidden-xs">{{ $loggedUser->first_name . ' ' . $loggedUser->last_name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            @if($loggedUser->avatar)
-                                <img src='{{  asset("$loggedUser->avatar") }}' class="img-circle" alt="User Image">
-                            @else
-                                <img src='{{  asset("admin/dist/img/user2-160x160.jpg") }}' class="img-circle" alt="User Image">
-                            @endif
+                            <img src='{{ asset(getAvatarUser("$loggedUser->avatar")) }}' class="img-circle" alt="User Image">
 
                             <p>
                                 {{ $loggedUser->first_name . ' ' . $loggedUser->last_name }} - <small>{{ getRoleOfUser($loggedUser->id) }} since {{ timeFormatTextDate($loggedUser->created_at) }}</small>
