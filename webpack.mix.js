@@ -18,7 +18,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .copy('resources/assets/web/js/*.js', 'public/web/js')
     .copy('resources/assets/admin/css/*.css', 'public/admin/css')
     .copy('resources/assets/admin/js/*.js', 'public/admin/js')
-    .copy('resources/assets/admin/js/utilities/*.js', 'public/admin/js/utilities');
+    .copy('resources/assets/admin/js/utilities/*.js', 'public/admin/js/utilities')
+    .copy('resources/assets/admin/js/pages/*.js', 'public/admin/js/pages');
 
 if (mix.inProduction()) {
     mix.version();
