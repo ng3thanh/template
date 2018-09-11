@@ -211,8 +211,9 @@
                         <li class="user-header">
                             <img src='{{ asset(getAvatarUser("$loggedUser->avatar")) }}' class="img-circle" alt="User Image">
 
+                            <p> {{ $loggedUser->first_name . ' ' . $loggedUser->last_name }} </p>
                             <p>
-                                {{ $loggedUser->first_name . ' ' . $loggedUser->last_name }} - <small>{{ getRoleOfUser($loggedUser->id) }} since {{ timeFormatTextDate($loggedUser->created_at) }}</small>
+                                <small>{{ getRoleOfUser($loggedUser->id) }} since {{ timeFormatTextDate($loggedUser->created_at) }}</small>
                             </p>
                         </li>
 

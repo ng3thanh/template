@@ -38,10 +38,11 @@ interface BaseRepositoryInterface
     /**
      * Get first data base on order
      *
-     * @param $orderBy
+     * @param string $orderBy
+     * @param string $sort
      * @return mixed
      */
-    public function getDataOrderBy($orderBy = 'created_at');
+    public function getDataOrderBy($orderBy = 'created_at', $sort = 'asc');
 
     /**
      * Get random data

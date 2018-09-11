@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('admin/css/morris.css') }}">
+    <link rel="stylesheet" href="{{ mix('admin/css/morris.css') }}">
 @endsection
 @section('content')
 
@@ -90,7 +90,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('admin/js/morris.min.js') }}"></script>
+    <script src="{{ mix('admin/js/morris.min.js') }}"></script>
     {{--<script>--}}
         {{--var data = $("#data-chart-blog").val();--}}
         {{--console.log(data);--}}
