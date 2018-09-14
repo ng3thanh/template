@@ -33,9 +33,9 @@
 <script src="{{ mix('admin/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ mix('admin/js/dataTables.bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ mix('admin/js/adminlte.min.js') }}"></script>
-<script src="{{ mix('admin/ckeditor/ckeditor.js') }}"></script>
-<script src="{{ mix('admin/ckfinder/ckfinder.js') }}"></script>
+<script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('admin/ckfinder/ckfinder.js') }}"></script>
 
 <script src="{{ mix('admin/js/jquery.validate.min.js') }}"></script>
 <script src="{{ mix('admin/js/utilities/jquery.validate.messages.js') }}"></script>
