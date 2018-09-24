@@ -10,7 +10,7 @@
         "dimsav/laravel-translatable": "^9.1",
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "srlabs/centaur": "^6.1"
     },
