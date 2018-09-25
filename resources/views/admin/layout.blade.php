@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin | @yield('title')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">
     <link rel="icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">
     @include('admin.assets.css')

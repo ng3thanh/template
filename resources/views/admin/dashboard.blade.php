@@ -69,7 +69,6 @@
             <!-- ./col -->
         </div>
         <!-- /.row -->
-
         {{--<div class="col-lg-12">--}}
             {{--<div class="nav-tabs-custom">--}}
                 {{--<ul class="nav nav-tabs pull-right">--}}
@@ -90,7 +89,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ mix('admin/js/morris.min.js') }}"></script>
+    <script src="{{ mix('admin/js/morris.js') }}"></script>
     {{--<script>--}}
         {{--var data = $("#data-chart-blog").val();--}}
         {{--console.log(data);--}}
