@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="{{ asset('admin/css/ionicons.css') }}">
 
 <!-- Theme style -->
-<link rel="stylesheet" href="{{ asset('admin/css/admin.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/adminlte.css') }}">
 
 <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="{{ asset('admin/css/skins/_all-skins.css') }}">
