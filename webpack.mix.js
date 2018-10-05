@@ -1,4 +1,3 @@
-// noinspection JSAnnotator
 let mix = require('laravel-mix');
 
 /*
@@ -12,15 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
+// mix.js('resources/assets/js/app.js', 'public/js')
+//    .sass('resources/assets/sass/app.scss', 'public/css');
 mix.js('resources/assets/js/admin/main.js', 'public/js')
-    .sass('resources/assets/js/admin/assets/scss/style.scss', 'public/css')
-    .copy('resources/assets/web/css/*.css', 'public/web/css')
-    .copy('resources/assets/web/js/*.js', 'public/web/js')
-    .copy('resources/assets/admin/css/*.css', 'public/admin/css')
-    .copy('resources/assets/admin/js/*.js', 'public/admin/js')
-    .copy('resources/assets/admin/js/utilities/*.js', 'public/admin/js/utilities')
-    .copy('resources/assets/admin/js/pages/*.js', 'public/admin/js/pages');
-
-if (mix.inProduction()) {
-    mix.version();
-}
+   .sass('resources/assets/js/admin/assets/scss/style.scss', 'public/css');

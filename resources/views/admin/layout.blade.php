@@ -12,8 +12,8 @@
     @yield('css')
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper" id="app">
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<div id="app">
     @include('admin.partials.header')
     @include('admin.partials.sidebar')
 
