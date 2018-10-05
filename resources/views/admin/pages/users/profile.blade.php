@@ -2,27 +2,7 @@
 @section('title', 'Profile')
 
 @section('css')
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('admin/css/font-awesome.min.css') }}">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="{{ asset('admin/css/ionicons.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('admin/css/AdminLTE.min.css') }}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{ asset('admin/css/skins/_all-skins.css') }}">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 @endsection
 
 @section('content')
@@ -35,7 +15,7 @@
 
                         <h3 class="profile-username text-center">{{ $loggedUser->first_name . ' ' . $loggedUser->last_name }}</h3>
 
-                        <p class="text-muted text-center">Software Engineer</p>
+                        <p class="text-muted text-center">{{ $loggedUser->roles[0]->name }}</p>
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
@@ -102,7 +82,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
                         <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-                        <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                        <li><a href="#info" data-toggle="tab">Information</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="active tab-pane" id="activity">
@@ -174,9 +154,9 @@
                                 <div class="user-block">
                                     <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
                                     <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
+                                        <a href="#">Adam Jones</a>
+                                        <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                                    </span>
                                     <span class="description">Posted 5 photos - 5 days ago</span>
                                 </div>
                                 <!-- /.user-block -->
@@ -316,55 +296,51 @@
                         </div>
                         <!-- /.tab-pane -->
 
-                        <div class="tab-pane" id="settings">
+                        <div class="tab-pane" id="info">
                             <form class="form-horizontal" >
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
+                                    <label for="firstName" class="col-sm-2 control-label">First Name</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                        <input type="email" class="form-control" id="firstName" placeholder="First Name" value="{{ $loggedUser->first_name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="lastName" placeholder="Last Name" value="{{ $loggedUser->last_name }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="{{ $loggedUser->email }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                                    <label for="address" class="col-sm-2 control-label">Address</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                        <input type="text" class="form-control" id="address" placeholder="Address" value="{{ $loggedUser->address }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                                    <label for="phone" class="col-sm-2 control-label">Phone</label>
 
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                        <input class="form-control" id="phone" placeholder="Phone" value="{{ $loggedUser->phone }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+                                    <label for="birthday" class="col-sm-2 control-label">Birthday</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                        <input type="text" class="form-control" id="birthday" placeholder="Birthday" value="{{ $loggedUser->birthday }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-danger">Submit</button>
+                                        <button type="submit" class="btn btn-danger">Update</button>
                                     </div>
                                 </div>
                             </form>
@@ -377,14 +353,5 @@
 @endsection
 
 @section('script')
-    <!-- jQuery 3 -->
-    <script src="{{ asset('admin/js/jquery.min.js') }}"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
-    <!-- FastClick -->
-    <script src="{{ asset('admin/js/fastclick.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('admin/js/adminlte.min.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('admin/js/demo.js') }}"></script>
+
 @endsection

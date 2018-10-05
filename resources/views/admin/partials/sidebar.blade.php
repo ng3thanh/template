@@ -19,7 +19,7 @@
             </div>
             <div class="pull-left info">
                 <p>{{ $loggedUser->first_name . ' ' . $loggedUser->last_name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> {{ $loggedUser->roles[0]->name }}</a>
             </div>
         </div>
 

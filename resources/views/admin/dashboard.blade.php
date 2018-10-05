@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('css')
-    <link rel="stylesheet" href="{{ mix('admin/css/morris.css') }}">
+
 @endsection
 @section('content')
 
@@ -89,22 +89,4 @@
 @endsection
 
 @section('script')
-    <script src="{{ mix('admin/js/morris.js') }}"></script>
-    {{--<script>--}}
-        {{--var data = $("#data-chart-blog").val();--}}
-        {{--console.log(data);--}}
-        {{--Morris.Area({--}}
-            {{--element: 'revenue-chart',--}}
-            {{--data: [--}}
-                {{--{"title": 1,"view":11},--}}
-                {{--{"title": 2,"view":2},--}}
-                {{--{"title": 3,"view":2},--}}
-                {{--{"title": 4,"view":2},--}}
-                {{--{"title": 5,"view":1}]--}}
-            {{--,--}}
-            {{--xkey: ['title'],--}}
-            {{--ykeys: ['view'],--}}
-            {{--labels: ['View']--}}
-        {{--});--}}
-    {{--</script>--}}
 @endsection
