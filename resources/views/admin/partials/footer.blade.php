@@ -1,7 +1,10 @@
-<footer class="main-footer">
-    <div class="pull-right hidden-xs">
-        <b>Version</b> 1.0.0
+<footer class="app-footer">
+    <div>
+        <a href="https://coreui.io">CoreUI</a>
+        <span>&copy; 2018 creativeLabs.</span>
     </div>
-    <strong>Copyright &copy; 2017 <a href="{{ route('main') }}"> ng3thanh</a>.
-    </strong> All rights reserved.
+    <div class="ml-auto">
+        <span>Powered by</span>
+        <a href="https://coreui.io">CoreUI</a>
+    </div>
 </footer>

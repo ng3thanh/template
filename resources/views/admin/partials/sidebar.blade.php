@@ -1,185 +1,203 @@
-@php
-    $dashboardActive = request()->route()->getName() == 'dashboard' ? 'active' : '';
-    $serviceIndexActive = request()->route()->getName() == 'services.index' ? 'active' : '';
-    $serviceCreateActive = request()->route()->getName() == 'services.create' ? 'active' : '';
-    $serviceActive = (!empty($serviceIndexActive) || !empty($serviceCreateActive)) ? 'active' : '';
-    $clientIndexActive = request()->route()->getName() == 'clients.index' ? 'active' : '';
-    $clientCreateActive = request()->route()->getName() == 'clients.create' ? 'active' : '';
-    $clientActive = (!empty($clientIndexActive) || !empty($clientCreateActive)) ? 'active' : '';
-    $blogIndexActive = request()->route()->getName() == 'blog.index' ? 'active' : '';
-    $blogCreateActive = request()->route()->getName() == 'blog.create' ? 'active' : '';
-    $blogActive = (!empty($blogIndexActive) || !empty($blogCreateActive)) ? 'active' : '';
-@endphp
-
-<aside class="main-sidebar">
-    <section class="sidebar">
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src='{{ asset(getAvatarUser("$loggedUser->avatar")) }}' class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p>{{ $loggedUser->first_name . ' ' . $loggedUser->last_name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> {{ $loggedUser->roles[0]->name }}</a>
-            </div>
-        </div>
-
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="search_all" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-					<button type="submit" name="search" id="search-btn" class="btn btn-flat">
-						<i class="fa fa-search"></i>
-					</button>
-				</span>
-            </div>
-        </form>
-
-        <ul class="sidebar-menu" data-widget="tree">
-
-            <li class="header">SIDEBAR MENU</li>
-
-            <li class="{{ $dashboardActive }}">
-                <a href="{{ route('dashboard') }}">
-                    <i class="fa fa-dashboard"></i>
-                    <span> Dashboard</span>
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="nav-icon icon-speedometer"></i> Dashboard
+                    <span class="badge badge-primary">NEW</span>
                 </a>
             </li>
-
-            <li class="treeview active">
-                <a href="#">
-                    <i class="fa fa-users"></i>
-                    <span> Users</span>
-                    <span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-					</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="active">
-                        <a href="{{ route('users.index') }}">
-                            <i class="fa fa-circle-o"></i> User index
-                        </a>
+            <li class="nav-title">Theme</li>
+            <li class="nav-item">
+                <a class="nav-link" href="colors.html">
+                    <i class="nav-icon icon-drop"></i> Colors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="typography.html">
+                    <i class="nav-icon icon-pencil"></i> Typography</a>
+            </li>
+            <li class="nav-title">Components</li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i> Base</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/breadcrumb.html">
+                            <i class="nav-icon icon-puzzle"></i> Breadcrumb</a>
                     </li>
-                    <li class="">
-                        <a href="{{ route('users.create') }}">
-                            <i class="fa fa-plus-circle"></i> Add user
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/cards.html">
+                            <i class="nav-icon icon-puzzle"></i> Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/carousel.html">
+                            <i class="nav-icon icon-puzzle"></i> Carousel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/collapse.html">
+                            <i class="nav-icon icon-puzzle"></i> Collapse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/forms.html">
+                            <i class="nav-icon icon-puzzle"></i> Forms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/jumbotron.html">
+                            <i class="nav-icon icon-puzzle"></i> Jumbotron</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/list-group.html">
+                            <i class="nav-icon icon-puzzle"></i> List group</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/navs.html">
+                            <i class="nav-icon icon-puzzle"></i> Navs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/pagination.html">
+                            <i class="nav-icon icon-puzzle"></i> Pagination</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/popovers.html">
+                            <i class="nav-icon icon-puzzle"></i> Popovers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/progress.html">
+                            <i class="nav-icon icon-puzzle"></i> Progress</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/scrollspy.html">
+                            <i class="nav-icon icon-puzzle"></i> Scrollspy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/switches.html">
+                            <i class="nav-icon icon-puzzle"></i> Switches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/tables.html">
+                            <i class="nav-icon icon-puzzle"></i> Tables</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/tabs.html">
+                            <i class="nav-icon icon-puzzle"></i> Tabs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="base/tooltips.html">
+                            <i class="nav-icon icon-puzzle"></i> Tooltips</a>
                     </li>
                 </ul>
             </li>
-
-            <li class="treeview {{ $serviceActive }}">
-                <a href="#">
-                    <i class="fa fa-users"></i>
-                    <span> Services</span>
-                    <span class="pull-right-container"> 
-						<i class="fa fa-angle-left pull-right"></i>
-					</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ $serviceIndexActive }}">
-                        <a href="{{ route('services.index') }}">
-                            <i class="fa fa-circle-o"></i> Services index
-                        </a>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-cursor"></i> Buttons</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="buttons/buttons.html">
+                            <i class="nav-icon icon-cursor"></i> Buttons</a>
                     </li>
-                    <li class="{{ $serviceCreateActive }}">
-                        <a href="{{ route('services.create') }}">
-                            <i class="fa fa-plus-circle"></i> Add service
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buttons/button-group.html">
+                            <i class="nav-icon icon-cursor"></i> Buttons Group</a>
                     </li>
-                </ul>
-            </li>
-
-            <li class="treeview {{ $clientActive }}">
-                <a href="#">
-                    <i class="fa fa-users"></i>
-                    <span> Clients</span>
-                    <span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-					</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ $clientIndexActive }}">
-                        <a href="{{ route('clients.index') }}">
-                            <i class="fa fa-circle-o"></i> Clients index
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buttons/dropdowns.html">
+                            <i class="nav-icon icon-cursor"></i> Dropdowns</a>
                     </li>
-                    <li class="{{ $clientCreateActive }}">
-                        <a href="{{ route('clients.create') }}">
-                            <i class="fa fa-plus-circle"></i> Add client
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buttons/brand-buttons.html">
+                            <i class="nav-icon icon-cursor"></i> Brand Buttons</a>
                     </li>
                 </ul>
             </li>
-
-            <li class="treeview {{ $blogActive }}">
-                <a href="#">
-                    <i class="fa fa-calendar"></i>
-                    <span> Blogs</span>
-                    <span class="pull-right-container"> 
-						<i class="fa fa-angle-left pull-right"></i>
-					</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ $blogIndexActive }}">
-                        <a href="{{ route('blog.index') }}">
-                            <i class="fa fa-asterisk"></i> Blogs index
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="nav-icon icon-pie-chart"></i> Charts</a>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-star"></i> Icons</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="icons/coreui-icons.html">
+                            <i class="nav-icon icon-star"></i> CoreUI Icons
+                            <span class="badge badge-success">NEW</span>
                         </a>
                     </li>
-                    <li class="{{ $blogCreateActive }}">
-                        <a href="{{ route('blog.create') }}">
-                            <i class="fa fa-edit"></i> Add blog
+                    <li class="nav-item">
+                        <a class="nav-link" href="icons/flags.html">
+                            <i class="nav-icon icon-star"></i> Flags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="icons/font-awesome.html">
+                            <i class="nav-icon icon-star"></i> Font Awesome
+                            <span class="badge badge-secondary">4.7</span>
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="icons/simple-line-icons.html">
+                            <i class="nav-icon icon-star"></i> Simple Line Icons</a>
                     </li>
                 </ul>
             </li>
-
-            <li class="treeview">
-                <a href="#"> <i class="fa fa-usd"></i>
-                    <span> Contact</span>
-                    <span class="pull-right-container"> 
-						<i class="fa fa-angle-left pull-right"></i>
-        			</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('contact.index') }}">
-                            <i class="fa fa-circle-o"></i> Contact index
-                        </a>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-bell"></i> Notifications</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications/alerts.html">
+                            <i class="nav-icon icon-bell"></i> Alerts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications/badge.html">
+                            <i class="nav-icon icon-bell"></i> Badge</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications/modals.html">
+                            <i class="nav-icon icon-bell"></i> Modals</a>
                     </li>
                 </ul>
             </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-cubes"></i>
-                    <span> Setting</span>
-                    <span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-        			</span>
+            <li class="nav-item">
+                <a class="nav-link" href="widgets.html">
+                    <i class="nav-icon icon-calculator"></i> Widgets
+                    <span class="badge badge-primary">NEW</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('slide.index') }}">
-                            <i class="fa fa-circle-o"></i> Background slide
-                        </a>
+            </li>
+            <li class="divider"></li>
+            <li class="nav-title">Extras</li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-star"></i> Pages</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" target="_top">
+                            <i class="nav-icon icon-star"></i> Login</a>
                     </li>
-                    <li>
-                        <a href="{{ route('footer.index') }}">
-                            <i class="fa fa-circle-o"></i> Footer info
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html" target="_top">
+                            <i class="nav-icon icon-star"></i> Register</a>
                     </li>
-                    <li>
-                        <a href="{{ route('introduce.index') }}">
-                            <i class="fa fa-circle-o"></i> Introduce
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="404.html" target="_top">
+                            <i class="nav-icon icon-star"></i> Error 404</a>
                     </li>
-                    <li>
-                        <a href="{{ route('logo.index') }}">
-                            <i class="fa fa-circle-o"></i> Logo
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="500.html" target="_top">
+                            <i class="nav-icon icon-star"></i> Error 500</a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item mt-auto">
+                <a class="nav-link nav-link-success" href="https://coreui.io" target="_top">
+                    <i class="nav-icon icon-cloud-download"></i> Download CoreUI</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
+                    <i class="nav-icon icon-layers"></i> Try CoreUI
+                    <strong>PRO</strong>
+                </a>
             </li>
         </ul>
-    </section>
-</aside>
+    </nav>
+    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+</div>

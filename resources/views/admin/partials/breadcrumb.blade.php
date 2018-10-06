@@ -1,15 +1,19 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        @yield('title')
-        <small>Control panel</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li>
-            <a href="{{ route('main') }}">
-                <i class="fa fa-dashboard"></i> Home
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">
+        <a href="#">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Dashboard</li>
+    <!-- Breadcrumb Menu-->
+    <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+            <a class="btn" href="#">
+                <i class="icon-speech"></i>
             </a>
-        </li>
-        <li class="active">@yield('title')</li>
-    </ol>
-</section>
+            <a class="btn" href="./">
+                <i class="icon-graph"></i>  Dashboard</a>
+            <a class="btn" href="#">
+                <i class="icon-settings"></i>  Settings</a>
+        </div>
+    </li>
+</ol>

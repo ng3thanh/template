@@ -12,21 +12,22 @@
     @yield('css')
 </head>
 
-<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
-<div id="app">
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     @include('admin.partials.header')
-    @include('admin.partials.sidebar')
 
-    <div class="content-wrapper">
-        @include('admin.partials.notification')
-        @include('admin.partials.breadcrumb')
-        @yield('content')
+    <div class="app-body">
+        @include('admin.partials.sidebar')
+
+        <main class="main">
+            @include('admin.partials.notification')
+            @include('admin.partials.breadcrumb')
+            @yield('content')
+        </main>
+
+        @include('admin.partials.aside')
     </div>
 
     @include('admin.partials.footer')
-    @include('admin.partials.control_sidebar')
-</div>
-
 @include('admin.assets.js')
 @yield('script')
 </body>
