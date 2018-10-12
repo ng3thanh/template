@@ -6,7 +6,7 @@
 
 @endsection
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" id="app">
         <div class="animated fadeIn">
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
