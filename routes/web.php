@@ -43,6 +43,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         // Users
         Route::resource('users', 'UsersController');
         Route::get('user/profile', 'UserController@profile')->name('user.profile');
+        Route::post('user/profile/update', 'UserController@updateProfile')->name('user.update.profile');
 
         // Contact
         Route::get('contact/index', 'ContactsController@index')->name('contact.index');

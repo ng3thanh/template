@@ -20,7 +20,6 @@ class MainController extends Controller
      * @var ClientService
      */
     protected $clientService;
-    
 
     /**
      * @var ServiceService

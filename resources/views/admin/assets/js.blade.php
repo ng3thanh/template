@@ -18,4 +18,3 @@
 <script src="{{ asset('admin/js/utilities/jquery.validate.messages.js') }}"></script>
 <script src="{{ asset('admin/js/utilities/form.validate.js') }}"></script>
 <script src="{{ asset('admin/js/utilities/common.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>

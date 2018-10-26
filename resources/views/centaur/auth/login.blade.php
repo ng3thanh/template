@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/css/font-awesome.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/css/ionicons.css') }}">
-        <link rel="stylesheet" href="{{ asset('admin/css/admin.css') }}">
+        <link rel="stylesheet" href="{{ asset('admin/css/adminlte.css') }}">
         {{--<link rel="shortcut icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">--}}
         {{--<link rel="icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">--}}
     </head>

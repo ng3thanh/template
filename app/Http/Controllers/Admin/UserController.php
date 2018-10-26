@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -18,5 +18,10 @@ class UserController extends Controller
     public function profile()
     {
         return view('admin.pages.users.profile');
+    }
+
+    public function updateProfile(Request $request)
+    {
+
     }
 }
