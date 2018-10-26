@@ -22,6 +22,6 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-
+        dd($request->all());
     }
 }

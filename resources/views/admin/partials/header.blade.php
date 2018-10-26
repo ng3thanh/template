@@ -24,7 +24,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                                            <img src="http://placehold.it/160x160" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             Support Team <small><i class="fa fa-clock-o"></i> 5 mins</small>
@@ -36,7 +36,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('admin/dist/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
+                                            <img src="http://placehold.it/160x160" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             AdminLTE Design Team <small><i class="fa fa-clock-o"></i> 2
@@ -48,7 +48,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('admin/dist/img/user4-128x128.jpg') }}" class="img-circle" alt="User Image">
+                                            <img src="http://placehold.it/160x160" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             Developers <small><i class="fa fa-clock-o"></i> Today</small>
@@ -59,7 +59,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('admin/dist/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
+                                            <img src="http://placehold.it/128x128" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             Sales Department <small><i class="fa fa-clock-o"></i>
@@ -71,7 +71,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ asset('admin/dist/img/user4-128x128.jpg') }}" class="img-circle" alt="User Image">
+                                            <img src="http://placehold.it/160x160" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             Reviewers <small><i class="fa fa-clock-o"></i> 2 days</small>

@@ -5,10 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Admin | Log in</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('admin/css/font-awesome.css') }}">
-        <link rel="stylesheet" href="{{ asset('admin/css/ionicons.css') }}">
-        <link rel="stylesheet" href="{{ asset('admin/css/adminlte.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/bootstrap/dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/Ionicons/css/ionicons.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/admin-lte/css/AdminLTE.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/iCheck/square/blue.css') }}">
         {{--<link rel="shortcut icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">--}}
         {{--<link rel="icon" href='{{ asset("$logo->favicon") }}' type="image/x-icon">--}}
     </head>
@@ -36,9 +37,9 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-8">
-                            <div class="checkbox">
+                            <div class="checkbox icheck">
                                 <label>
-                                    <input name="remember" type="checkbox" value="true" {{ old('remember') == 'true' ? 'checked' : ''}}>Remember Me
+                                    <input name="remember" type="checkbox" value="true" {{ old('remember') == 'true' ? 'checked' : ''}}> &nbsp;&nbsp;Remember Me
                                 </label>
                             </div>
                         </div>
@@ -51,7 +52,16 @@
             </div>
         </div>
 
-        <script src="{{ asset('admin/js/jquery.js') }}"></script>
-        <script src="{{ asset('admin/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('lib/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('lib/iCheck/icheck.min.js') }}"></script>
+        <script>
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue'
+                });
+            });
+        </script>
     </body>
 </html>

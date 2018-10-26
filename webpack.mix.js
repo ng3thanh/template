@@ -12,9 +12,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css')
-    .copy('resources/assets/web/css/*.css', 'public/web/css')
+mix.copy('resources/assets/web/css/*.css', 'public/web/css')
     .copy('resources/assets/web/js/*.js', 'public/web/js')
     .copy('resources/assets/admin/css/*.css', 'public/admin/css')
     .copy('resources/assets/admin/js/*.js', 'public/admin/js')

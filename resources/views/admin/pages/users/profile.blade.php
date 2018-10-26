@@ -88,7 +88,7 @@
                             <!-- Post -->
                             <div class="post">
                                 <div class="user-block">
-                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                                    <img class="img-circle img-bordered-sm" src="http://placehold.it/128x128" alt="user image">
                                     <span class="username">
                           <a href="#">Jonathan Burke Jr.</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -119,7 +119,7 @@
                             <!-- Post -->
                             <div class="post clearfix">
                                 <div class="user-block">
-                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                                    <img class="img-circle img-bordered-sm" src="http://placehold.it/128x128" alt="User Image">
                                     <span class="username">
                           <a href="#">Sarah Ross</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -151,7 +151,7 @@
                             <!-- Post -->
                             <div class="post">
                                 <div class="user-block">
-                                    <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+                                    <img class="img-circle img-bordered-sm" src="http://placehold.it/128x128" alt="User Image">
                                     <span class="username">
                                         <a href="#">Adam Jones</a>
                                         <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -161,21 +161,21 @@
                                 <!-- /.user-block -->
                                 <div class="row margin-bottom">
                                     <div class="col-sm-6">
-                                        <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                                        <img class="img-responsive" src="http://placehold.it/128x128" alt="Photo">
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-sm-6">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
+                                                <img class="img-responsive" src="http://placehold.it/128x128" alt="Photo">
                                                 <br>
-                                                <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
+                                                <img class="img-responsive" src="http://placehold.it/128x128" alt="Photo">
                                             </div>
                                             <!-- /.col -->
                                             <div class="col-sm-6">
-                                                <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
+                                                <img class="img-responsive" src="http://placehold.it/128x128" alt="Photo">
                                                 <br>
-                                                <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                                                <img class="img-responsive" src="http://placehold.it/128x128" alt="Photo">
                                             </div>
                                             <!-- /.col -->
                                         </div>
@@ -299,42 +299,39 @@
                             <form id="information" class="form-horizontal" method="post" action="{{ route('user.update.profile') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                                    <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                        <input type="email" name="first_name" class="form-control" id="inputFirstName" value="{{ $loggedUser->first_name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="last_name" class="form-control" id="inputLastName" value="{{ $loggedUser->last_name }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                        <input type="email" name="email" class="form-control" id="inputEmail" value="{{ $loggedUser->email }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                                    <label for="inputAddress" class="col-sm-2 control-label">Address</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                        <textarea name="address" class="form-control" id="inputAddress">{{ $loggedUser->address }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                                    <label for="inputPhone" class="col-sm-2 control-label">Phone</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                        <input name="phone" type="text" class="form-control" id="inputPhone" value="{{ $loggedUser->phone }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+                                    <label for="inputBirthday" class="col-sm-2 control-label">Birthday</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                            </label>
-                                        </div>
+                                        <input name="birthday" type="text" class="form-control" id="inputBirthday" value="{{ $loggedUser->birthday }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -352,4 +349,11 @@
 @endsection
 
 @section('script')
+    <script>
+        $(function () {
+            $('#inputBirthday').datepicker({
+                autoclose: true
+            });
+        });
+    </script>
 @endsection
