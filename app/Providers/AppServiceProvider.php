@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $repositories = [
             'Base', 'Blogs', 'Slides', 'Footers', 'Services', 'Introduces', 'Clients', 'Feedbacks',
-            'BlogsTranslate', 'ServicesTranslate', 'IntroducesTranslate', 'Logo'
+            'BlogsTranslate', 'ServicesTranslate', 'IntroducesTranslate', 'Logo', 'Users', 'Auth'
         ];
 
         foreach ($repositories as $model) {

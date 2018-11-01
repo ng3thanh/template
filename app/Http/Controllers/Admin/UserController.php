@@ -3,25 +3,39 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected $userRepository;
-    protected $authManager;
+    /**
+     * @var UserService
+     */
+    protected $userService;
 
-    public function __construct()
-    {
-
+    /**
+     * UserController constructor.
+     * @param UserService $userService
+     */
+    public function __construct(
+        UserService $userService
+    ) {
+        $this->userService = $userService;
     }
 
     public function profile()
     {
-        return view('admin.pages.users.profile');
+        return view('admin.pages.users.profile.index');
     }
 
     public function updateProfile(Request $request)
     {
-        dd($request->all());
+        $data = $request->except('_token');
+        $update = $this->userService->updateProfileByUser($data);
+        if ($update) {
+            return redirect()->back()->with('success', __('notification.message.success.update'));
+        } else {
+            return redirect()->back()->with('success', __('notification.message.error.update'));
+        }
     }
 }

@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Sentinel;
-use Centaur\AuthManager;
+use App\Repositories\Auth\AuthRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Centaur\Dispatches\BaseDispatch;
 
 class SessionController extends Controller
 {
-    protected $authManager;
+    /**
+     * @var AuthRepositoryInterface
+     */
+    protected $authRepository;
 
     /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
+     * SessionController constructor.
+     * @param AuthRepositoryInterface $authRepository
      */
-    public function __construct(AuthManager $authManager)
+    public function __construct(AuthRepositoryInterface $authRepository)
     {
-        $this->middleware('sentinel.guest', ['except' => 'getLogout']);
-        $this->authManager = $authManager;
+        $this->authRepository = $authRepository;
     }
 
     /**
@@ -30,7 +29,7 @@ class SessionController extends Controller
      */
     public function getLogin()
     {
-        return view('Centaur::auth.login');
+        return view('auth.auth.login');
     }
 
     /**
@@ -49,11 +48,8 @@ class SessionController extends Controller
         $remember = (bool)$request->get('remember', false);
 
         // Attempt the Login
-        $result = $this->authManager->authenticate($credentials, $remember);
-        $url = route('dashboard');
+        $result = $this->authRepository->authenticate($credentials, $remember);
 
-        // Return the appropriate response
-        $path = session()->pull('url.intended', $url);
         return $result->dispatch($path);
     }
 
@@ -67,10 +63,7 @@ class SessionController extends Controller
     {
         // Terminate the user's current session.  Passing true as the
         // second parameter kills all of the user's active sessions.
-        $result = $this->authManager->logout(null, null);
-
-        // Return the appropriate response
-        $url = route('dashboard');
-        return $result->dispatch($url);
+        auth()->logout();
+        return redirect()->route('auth.login.form');
     }
 }
