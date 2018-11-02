@@ -24,7 +24,7 @@
             <div class="login-box-body">
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form accept-charset="UTF-8" role="form" method="post" action="{{ route('auth.login.attempt') }}">
-                    <input name="_token" value="{{ csrf_token() }}" type="hidden">
+                    {{ csrf_field() }}
                     <div class="form-group has-feedback {{ ($errors->has('email')) ? 'has-error' : '' }}">
                         <input type="email" class="form-control" placeholder="E-mail" name="email" type="text" value="{{ old('email') }}">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

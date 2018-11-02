@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Repositories\Auth\AuthRepositoryInterface;
+use App\Services\AuthService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SessionController extends Controller
 {
     /**
-     * @var AuthRepositoryInterface
+     * @var AuthService
      */
-    protected $authRepository;
+    protected $authService;
 
     /**
      * SessionController constructor.
-     * @param AuthRepositoryInterface $authRepository
+     * @param AuthService $authService
      */
-    public function __construct(AuthRepositoryInterface $authRepository)
+    public function __construct(AuthService $authService)
     {
-        $this->authRepository = $authRepository;
+        $this->authService = $authService;
+        $this->middleware('guest')->except('logout');
     }
 
     /**
@@ -48,9 +49,13 @@ class SessionController extends Controller
         $remember = (bool)$request->get('remember', false);
 
         // Attempt the Login
-        $result = $this->authRepository->authenticate($credentials, $remember);
+        $auth = $this->authService->authenticate($credentials, $remember);
 
-        return $result->dispatch($path);
+        if ($auth) {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
