@@ -26,6 +26,12 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * Update profile by user with data in service logic
+     *
+     * @param $data
+     * @return bool
+     */
     public function updateProfileByUser($data)
     {
         $userId = auth()->user()->id;
