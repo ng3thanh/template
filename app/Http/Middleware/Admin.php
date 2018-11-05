@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Middleware;
 use Closure;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 class Admin
 {
     /**
@@ -13,10 +12,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (Sentinel::guest() || !(Sentinel::inRole('administrator') || Sentinel::inRole('moderator'))) {
+        if (!auth()->check()) {
             return redirect()->route('auth.login.form');
         }
-        view()->share('loggedUser', Sentinel::getUser());
+        view()->share('loggedUser', auth()->user());
         return $next($request);
     }
 }

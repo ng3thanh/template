@@ -7,6 +7,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Users extends Authenticatable
 {
+    const LOGIN_STATUS = 1;
+    const LOGOUT_STATUS = 0;
+
     use Notifiable;
 
     /**
@@ -15,7 +18,7 @@ class Users extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'login_status', 'last_login'
     ];
 
     /**

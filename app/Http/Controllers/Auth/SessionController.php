@@ -50,7 +50,6 @@ class SessionController extends Controller
 
         // Attempt the Login
         $auth = $this->authService->authenticate($credentials, $remember);
-
         if ($auth) {
             return redirect()->route('dashboard');
         } else {
@@ -68,7 +67,11 @@ class SessionController extends Controller
     {
         // Terminate the user's current session.  Passing true as the
         // second parameter kills all of the user's active sessions.
-        auth()->logout();
-        return redirect()->route('auth.login.form');
+        $auth = $this->authService->logout();
+        if ($auth) {
+            return redirect()->route('auth.login.form');
+        } else {
+            return redirect()->back();
+        }
     }
 }

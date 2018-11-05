@@ -28,7 +28,7 @@ class UserService
 
     public function updateProfileByUser($data)
     {
-        $userId = AuthManager::getUser();
+        $userId = auth()->user()->id;
         try {
             DB::beginTransaction();
             $this->userRepository->update($userId, $data);
