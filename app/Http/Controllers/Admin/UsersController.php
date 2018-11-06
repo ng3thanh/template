@@ -3,29 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\UsersService;
 use Illuminate\Support\Facades\Mail;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use Centaur\Mail\CentaurWelcomeEmail;
 
 class UsersController extends Controller
 {
-    protected $userRepository;
-    protected $authManager;
+    /**
+     * @var UsersService
+     */
+    protected $userService;
 
-    public function __construct(AuthManager $authManager)
+    /**
+     * UsersController constructor.
+     * @param UsersService $userService
+     */
+    public function __construct(UsersService $userService)
     {
-        // Middleware
-        $this->middleware('sentinel.auth');
-        $this->middleware('sentinel.access:users.create', ['only' => ['create', 'store']]);
-        $this->middleware('sentinel.access:users.view', ['only' => ['index', 'show']]);
-        $this->middleware('sentinel.access:users.update', ['only' => ['edit', 'update']]);
-        $this->middleware('sentinel.access:users.destroy', ['only' => ['destroy']]);
-
-        // Dependency Injection
-        $this->userRepository = app()->make('sentinel.users');
-        $this->authManager = $authManager;
+        $this->userService = $userService;
     }
 
     /**
@@ -228,5 +225,32 @@ class UsersController extends Controller
 
         session()->flash('success', $message);
         return redirect()->route('users.index');
+    }
+
+    /**
+     * Get profile page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function profile()
+    {
+        return view('admin.pages.users.profile.index');
+    }
+
+    /**
+     * Update profile
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateProfile(Request $request)
+    {
+        $data = $request->except('_token');
+        $update = $this->userService->updateProfileByUser($data);
+        if ($update) {
+            return redirect()->back()->with('success', __('message.success.update'));
+        } else {
+            return redirect()->back()->with('success', __('message.error.update'));
+        }
     }
 }

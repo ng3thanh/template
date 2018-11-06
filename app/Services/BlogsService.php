@@ -8,7 +8,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class BlogService
+class BlogsService
 {
     /**
      * @var BlogsRepositoryInterface

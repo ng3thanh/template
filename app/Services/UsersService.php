@@ -3,13 +3,10 @@
 namespace App\Services;
 
 use App\Repositories\Users\UsersRepositoryInterface;
-use Cartalyst\Sentinel\Sentinel;
-use Centaur\AuthManager;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
-class UserService
+class UsersService
 {
     /**
      * @var UsersRepositoryInterface

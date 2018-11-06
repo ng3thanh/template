@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\BlogService;
+use App\Services\BlogsService;
 use App\Services\ClientService;
 use App\Services\FeedbackService;
 use App\Services\ServiceService;
@@ -12,7 +12,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 class MainController extends Controller
 {
     /**
-     * @var BlogService
+     * @var BlogsService
      */
     protected $blogService;
 
@@ -34,14 +34,14 @@ class MainController extends Controller
     /**
      * MainController constructor.
      *
-     * @param BlogService $blogService
+     * @param BlogsService $blogService
      * @param ClientService $clientService
      * @param ServiceService $serviceService
      * @param FeedbackService $feedbackService
      */
 
     public function __construct(
-        BlogService $blogService,
+        BlogsService $blogService,
         ClientService $clientService,
         ServiceService $serviceService,
         FeedbackService $feedbackService
