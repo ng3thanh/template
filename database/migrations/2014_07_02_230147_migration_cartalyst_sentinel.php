@@ -100,6 +100,7 @@ class MigrationCartalystSentinel extends Migration
             $table->string('password');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->date('birthday')->nullable();
@@ -108,6 +109,7 @@ class MigrationCartalystSentinel extends Migration
             $table->date('credit_card_expiration_date')->nullable();
             $table->text('credit_card_details')->nullable();
             $table->text('permissions')->nullable();
+            $table->tinyInteger('login_status')->default(0)->comment('0: Not login, 1: Login');
             $table->timestamp('last_login')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();

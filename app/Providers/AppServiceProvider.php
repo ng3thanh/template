@@ -15,10 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $footer = Settings::all()->groupBy('type');
-        $logo = Logo::all()->first();
-        view()->share('footer', $footer);
-        view()->share('logo', $logo);
+
     }
 
     /**

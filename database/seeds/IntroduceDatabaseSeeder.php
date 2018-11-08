@@ -12,6 +12,9 @@ class IntroduceDatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('introduces')->truncate();
+        DB::table('introduces_translate')->truncate();
+
         $dataIntroduce = [
             'image' => 'introduce',
             'created_at' => date('Y-m-d H:i:s'),
@@ -20,12 +23,11 @@ class IntroduceDatabaseSeeder extends Seeder
         DB::table('introduces')->insert([$dataIntroduce]);
 
         $dataTranslate = [
-            ['introduce_id' => 1, 'locale' => 'en', 'name' => 'Test en', 'content' => 'Test en'],
-            ['introduce_id' => 1, 'locale' => 'vi', 'name' => 'Test vi', 'content' => 'Test vi'],
+            ['introduces_id' => 1, 'locale' => 'en', 'name' => 'Test en', 'content' => 'Test en'],
+            ['introduces_id' => 1, 'locale' => 'vi', 'name' => 'Test vi', 'content' => 'Test vi'],
         ];
         foreach ($dataTranslate as $value) {
             DB::table('introduces_translate')->insert([$value]);
         }
-
     }
 }

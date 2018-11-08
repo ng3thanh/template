@@ -17,7 +17,12 @@ class CreateLogoTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('image');
+            $table->string('favicon')->nullable();
+            $table->string('content1')->nullable();
+            $table->string('content2')->nullable();
+            $table->string('content3')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

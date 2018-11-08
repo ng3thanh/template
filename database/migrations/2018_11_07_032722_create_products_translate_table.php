@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIntroducesTranslate extends Migration
+class CreateProductsTranslateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,17 @@ class CreateIntroducesTranslate extends Migration
      */
     public function up()
     {
-        Schema::table('introduces', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropColumn('content');
-        });
-
-        Schema::create('introduces_translate', function (Blueprint $table) {
+        Schema::create('products_translate', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('introduces_id')->unsigned();
+            $table->integer('products_id')->unsigned();
             $table->string('locale')->index();
 
-            $table->string('name', 255);
+            $table->string('title', 200);
+            $table->string('slug', 200);
+            $table->text('description');
             $table->text('content');
 
-            $table->unique(['introduces_id','locale']);
+            $table->unique(['products_id','locale']);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -39,6 +36,6 @@ class CreateIntroducesTranslate extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('introduces_translate');
+        Schema::dropIfExists('products_translate');
     }
 }

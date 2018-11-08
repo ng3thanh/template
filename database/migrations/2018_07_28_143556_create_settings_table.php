@@ -17,6 +17,9 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->integer('type')->comment('Location of data in footer');
             $table->string('name');
+            $table->string('name_vn')->nullable();
+            $table->string('value_vn')->nullable();
+            $table->string('icon')->nullable();
             $table->text('value')->nullable();
             $table->timestamps();
             $table->softDeletes();

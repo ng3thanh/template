@@ -13,13 +13,6 @@ class CreateServiceTranslate extends Migration
      */
     public function up()
     {
-        Schema::table('services', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropColumn('slug');
-            $table->dropColumn('description');
-            $table->dropColumn('content');
-        });
-
         Schema::create('services_translate', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('services_id')->unsigned();
@@ -31,7 +24,8 @@ class CreateServiceTranslate extends Migration
             $table->text('content');
 
             $table->unique(['services_id','locale']);
-            $table->foreign('services_id')->references('id')->on('services')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
