@@ -5,6 +5,14 @@ return [
         'slide' => [
             'not_show' => 4
         ],
+        'product' => [
+            'paginate' => [
+                'main' => 4,
+                'web' => 9,
+                'admin' => 20
+            ],
+            'random' => 3
+        ],
         'blog' => [
             'paginate' => [
                 'main' => 4,

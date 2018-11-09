@@ -13,95 +13,95 @@ class ProductsService
     /**
      * @var ProductsRepositoryInterface
      */
-    protected $blogsRepository;
+    protected $productsRepository;
 
     /**
      * @var ProductsTranslateRepositoryInterface
      */
-    protected $blogsTransRepository;
+    protected $productsTransRepository;
 
 
     /**
      * ProductService constructor.
-     * @param ProductsRepositoryInterface $blogsRepository
-     * @param ProductsTranslateRepositoryInterface $blogsTransRepository
+     * @param ProductsRepositoryInterface $productsRepository
+     * @param ProductsTranslateRepositoryInterface $productsTransRepository
      */
     public function __construct(
-        ProductsRepositoryInterface $blogsRepository,
-        ProductsTranslateRepositoryInterface $blogsTransRepository
+        ProductsRepositoryInterface $productsRepository,
+        ProductsTranslateRepositoryInterface $productsTransRepository
     ) {
-        $this->blogsRepository = $blogsRepository;
-        $this->blogsTransRepository = $blogsTransRepository;
+        $this->productsRepository = $productsRepository;
+        $this->productsTransRepository = $productsTransRepository;
     }
 
     /**
-     * Find blog
+     * Find product
      *
      * @param $id
      * @return mixed
      */
     public function findProduct($id)
     {
-        $data = $this->blogsRepository->find($id);
+        $data = $this->productsRepository->find($id);
         return $data;
     }
 
     /**
-     * Get all blog and paginate
+     * Get all product and paginate
      *
      * @return mixed
      */
     public function getAllProduct($limit)
     {
-        $data = $this->blogsRepository->getAllPaginateWithTrash($limit);
+        $data = $this->productsRepository->getAllPaginateWithTrash($limit);
         return $data;
     }
 
     /**
-     * Get all blog and paginate to show in web
+     * Get all product and paginate to show in web
      *
      * @return mixed
      */
     public function getAllProductInWeb($limit)
     {
-        $data = $this->blogsRepository->getAllPaginate($limit);
+        $data = $this->productsRepository->getAllPaginate($limit);
         return $data;
     }
 
     /**
-     * Find blog by id
+     * Find product by id
      *
      * @param $id
      * @return mixed
      */
     public function findProductBySlugId($id)
     {
-        $data = $this->blogsRepository->findByIdRelatedSlug($id);
+        $data = $this->productsRepository->findByIdRelatedSlug($id);
         return $data;
     }
 
     /**
-     * @param $blog
+     * @param $product
      * @return mixed
      */
-    public function findProductNext($blog)
+    public function findProductNext($product)
     {
-        $data = $this->blogsRepository->getProductNextDate($blog->id, $blog->created_at);
+        $data = $this->productsRepository->getProductNextDate($product->id, $product->created_at);
         return $data;
     }
 
     /**
-     * @param $blog
+     * @param $product
      * @return mixed
      */
-    public function findProductPrevious($blog)
+    public function findProductPrevious($product)
     {
-        $data = $this->blogsRepository->getProductPreviousDate($blog->id, $blog->created_at);
+        $data = $this->productsRepository->getProductPreviousDate($product->id, $product->created_at);
         return $data;
     }
 
     /**
-     * Create new blog
+     * Create new product
      *
      * @param $data
      * @return bool
@@ -117,18 +117,18 @@ class ProductsService
                 unset($data['image']);
             }
 
-            // Save data of base blog
+            // Save data of base product
             $data['author'] = Sentinel::getUser()->username;
-            $dataMainProduct = formatDataBaseOnTable('blogs', $data);
-            $result = $this->blogsRepository->create($dataMainProduct);
+            $dataMainProduct = formatDataBaseOnTable('products', $data);
+            $result = $this->productsRepository->create($dataMainProduct);
 
-            // Update image to base blog
+            // Update image to base product
             if ($result) {
-                $newName = uploadImage($result->id, $file, 'blog');
-                $this->blogsRepository->update(
+                $newName = uploadImage($result->id, $file, 'product');
+                $this->productsRepository->update(
                     $result->id,
                     [
-                        'image' => config('upload.blog') . $result->id . '/' . $newName
+                        'image' => config('upload.product') . $result->id . '/' . $newName
                     ]);
             }
 
@@ -137,8 +137,8 @@ class ProductsService
             foreach ($dataTranslates as $key => $value) {
                 $dataProductTrans = $value;
                 $dataProductTrans['locale'] = $key;
-                $dataProductTrans['blogs_id'] = $result->id;
-                $this->blogsTransRepository->create($dataProductTrans);
+                $dataProductTrans['products_id'] = $result->id;
+                $this->productsTransRepository->create($dataProductTrans);
             }
 
             DB::commit();
@@ -151,7 +151,7 @@ class ProductsService
     }
 
     /**
-     * Update blog
+     * Update product
      *
      * @param $id
      * @param $data
@@ -163,16 +163,16 @@ class ProductsService
             DB::beginTransaction();
 
             if (isset($data['image'])) {
-                $newName = uploadImage($id, $data['image'], 'blog');
-                $data['image'] = config('upload.blog') . $id . '/' . $newName;
+                $newName = uploadImage($id, $data['image'], 'product');
+                $data['image'] = config('upload.product') . $id . '/' . $newName;
             }
 
-            $dataBaseProduct = formatDataBaseOnTable('blogs', $data);
-            $this->blogsRepository->update($id, $dataBaseProduct);
+            $dataBaseProduct = formatDataBaseOnTable('products', $data);
+            $this->productsRepository->update($id, $dataBaseProduct);
 
             $dataTranslates = $data['trans'];
             foreach ($dataTranslates as $key => $value) {
-                $this->blogsTransRepository->updateTrans('blogs_id', $id, $key, $value);
+                $this->productsTransRepository->updateTrans('products_id', $id, $key, $value);
             }
 
             DB::commit();
@@ -190,7 +190,7 @@ class ProductsService
      */
     public function randomProduct($number)
     {
-        $result = $this->blogsRepository->getSomeRandomData($number);
+        $result = $this->productsRepository->getSomeRandomData($number);
         return $result;
     }
 
@@ -200,18 +200,18 @@ class ProductsService
      */
     public function getProductLimit($limit)
     {
-        $data = $this->blogsRepository->getDataLimit($limit)->get();
+        $data = $this->productsRepository->getDataLimit($limit)->get();
         return $data;
     }
 
 
     /**
-     * Count blog
+     * Count product
      * @return mixed
      */
     public function countProduct()
     {
-        $data = $this->blogsRepository->countAll();
+        $data = $this->productsRepository->countAll();
         return $data;
     }
 
@@ -221,7 +221,7 @@ class ProductsService
      */
     public function deleteProduct($id)
     {
-        $delete = $this->blogsRepository->delete($id);
+        $delete = $this->productsRepository->delete($id);
         return $delete;
     }
 
@@ -231,11 +231,11 @@ class ProductsService
      */
     public function restoreProduct($id)
     {
-        $delete = $this->blogsRepository->restore($id);
+        $delete = $this->productsRepository->restore($id);
         return $delete;
     }
     /**
-     * Get all tags of blog
+     * Get all tags of product
      *
      * @param $id
      * @return mixed
@@ -247,22 +247,22 @@ class ProductsService
     }
 
     /**
-     * Save view blog
-     * @param $blog
+     * Save view product
+     * @param $product
      * @param $view
      * @return mixed
      */
-    public function saveViewProduct($blog, $view)
+    public function saveViewProduct($product, $view)
     {
         try {
             DB::beginTransaction();
-            $data = $this->blogsRepository->update($blog->blogs_id, ['view' => $view]);
+            $data = $this->productsRepository->update($product->products_id, ['view' => $view]);
             DB::commit();
             return $data;
         } catch (Exception $e) {
             logger(__METHOD__ . ' - Error: '. $e->getMessage());
             DB::rollBack();
-            return $blog;
+            return $product;
         }
     }
 
@@ -272,7 +272,7 @@ class ProductsService
      */
     public function getProductViewJson($limit)
     {
-        $data = $this->blogsRepository->getDataLimit($limit)->get();
+        $data = $this->productsRepository->getDataLimit($limit)->get();
         $result = [];
         foreach ($data as $key => $value)
         {

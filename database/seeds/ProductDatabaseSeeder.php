@@ -27,7 +27,9 @@ class ProductDatabaseSeeder extends Seeder
                 'title' => $titleVi,
                 'slug' => $slugVi,
                 'description' => $faker->realText(),
-                'content' => $faker->realText()
+                'content' => $faker->realText(),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ];
             DB::table('products_translate')->insert($dataVn);
 
@@ -39,14 +41,18 @@ class ProductDatabaseSeeder extends Seeder
                 'title' => $titleEn,
                 'slug' => $slugEn,
                 'description' => $faker->realText(),
-                'content' => $faker->realText()
+                'content' => $faker->realText(),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ];
             DB::table('products_translate')->insert($dataEn);
 
             $dataImage = [
                 'products_id' => $product->id,
                 'alt' => $faker->realText($maxNbChars = 50, $indexSize = 1),
-                'name' => $faker->imageUrl($width = 640, $height = 480)
+                'name' => $faker->imageUrl($width = 640, $height = 480),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ];
             DB::table('products_image')->insert($dataImage);
         });

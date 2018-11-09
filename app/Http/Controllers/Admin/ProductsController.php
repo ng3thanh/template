@@ -3,25 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BlogPostRequest;
+use App\Services\ProductsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as RequestParameter;
 
 class ProductsController extends Controller
 {
     /**
-     * @var BlogService
+     * @var ProductsService
      */
-    protected $blogService;
+    protected $productService;
 
     /**
-     * BlogsController constructor.
-     * @param BlogService $blogService
+     * ProductsController constructor.
+     * @param ProductsService $productService
      */
     public function __construct(
-        BlogService $blogService
+        ProductsService $productService
     ) {
-        $this->blogService = $blogService;
+        $this->productService = $productService;
     }
 
     /**
@@ -31,10 +31,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $limit = config('constant.number.blog.paginate.admin');
+        $limit = config('constant.number.product.paginate.admin');
         $number = (RequestParameter::get('page','1') - 1)* $limit + 1;
-        $blogs = $this->blogService->getAllBlog($limit);
-        return view('admin.pages.blogs.index', compact('blogs', 'number'));
+        $products = $this->productService->getAllProduct($limit);
+        return view('admin.pages.products.index', compact('products', 'number'));
     }
 
     /**
@@ -44,19 +44,19 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.blogs.create');
+        return view('admin.pages.products.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param BlogPostRequest $request
+     * @param ProductsPostRequest $request
      * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function store(BlogPostRequest $request) {
+    public function store(ProductsPostRequest $request) {
         $data = $request->except('_token');
-        $result = $this->blogService->createBlog($data);
+        $result = $this->productService->createProduct($data);
         if ($result) {
-            return redirect()->route('blog.index')->with('success', 'Create new data successfully!');
+            return redirect()->route('product.index')->with('success', 'Create new data successfully!');
         } else {
             return redirect()->back()->with('error', 'Having error when save data')->withInput();
         }
@@ -70,34 +70,34 @@ class ProductsController extends Controller
      */
     public function copy($id)
     {
-        $blog = $this->blogService->findBlog($id);
-        return view('admin.pages.blogs.copy', compact('blog'));
+        $product = $this->productService->findProduct($id);
+        return view('admin.pages.products.copy', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Blogs $blog
+     * @param  \App\Models\Products $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blogs $blog)
+    public function edit(Products $product)
     {
-        return view('admin.pages.blogs.edit', compact('blog'));
+        return view('admin.pages.products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Models\Blogs $blog
+     * @param  \App\Models\Products $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blogs $blog)
+    public function update(Request $request, Products $product)
     {
         $data = $request->except('_token', '_method');
-        $result = $this->blogService->updateBlog($blog->id, $data);
+        $result = $this->productService->updateProduct($product->id, $data);
         if ($result) {
-            return redirect()->route('blog.index')->with('success', 'Update data successfully!');
+            return redirect()->route('product.index')->with('success', 'Update data successfully!');
         } else {
             return redirect()->back()->with('error', 'Having error when update data')->withInput();
         }
@@ -106,14 +106,14 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Blogs $blog
+     * @param  \App\Models\Products $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blogs $blog)
+    public function destroy(Products $product)
     {
-        $result = $this->blogService->deleteBlog($blog->id);
+        $result = $this->productService->deleteProduct($product->id);
         if ($result) {
-            return redirect()->route('blog.index')->with('success', 'Delete data successfully!');
+            return redirect()->route('product.index')->with('success', 'Delete data successfully!');
         } else {
             return redirect()->back()->with('error', 'Having error when delete data')->withInput();
         }
@@ -127,9 +127,9 @@ class ProductsController extends Controller
      */
     public function restore($id)
     {
-        $result = $this->blogService->restoreBlog($id);
+        $result = $this->productService->restoreProduct($id);
         if ($result) {
-            return redirect()->route('blog.index')->with('success', 'Restore data successfully!');
+            return redirect()->route('product.index')->with('success', 'Restore data successfully!');
         } else {
             return redirect()->back()->with('error', 'Having error when restore data')->withInput();
         }

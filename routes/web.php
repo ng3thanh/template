@@ -26,6 +26,7 @@ Route::middleware('guest')->namespace('Web')->group(function () {
             Route::get('{id}/{slug}', 'BlogsController@show')->name('blogs.detail');
         });
 
+        // Services
         Route::prefix('services')->group(function () {
             Route::get('{id}/{slug}', 'ServicesController@show')->name('services.detail');
         });
@@ -51,6 +52,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
         // Services
         Route::resource('services', 'ServicesController');
+
+        // Products
+        Route::resource('product', 'ProductsController');
+        Route::post('product/restore/{id}', 'ProductsController@restore')->name('product.restore');
+        Route::get('product/copy/{id}', 'ProductsController@copy')->name('product.copy');
 
         // Blogs
         Route::resource('blog', 'BlogsController');

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\ProductsTranslate;
 
-use App\Models\ProductsTranslate;
+use App\Models\ProductsTranslation;
 use App\Repositories\Base\BaseEloquentRepository;
 
 class ProductsTranslateEloquentRepository extends BaseEloquentRepository implements ProductsTranslateRepositoryInterface
@@ -13,7 +13,7 @@ class ProductsTranslateEloquentRepository extends BaseEloquentRepository impleme
      */
     public function getModel()
     {
-        return ProductsTranslate::class;
+        return ProductsTranslation::class;
     }
 
     /**

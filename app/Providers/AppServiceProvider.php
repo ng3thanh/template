@@ -26,8 +26,18 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $repositories = [
-            'Base', 'Blogs', 'Slides', 'Footers', 'Services', 'Introduces', 'Clients', 'Feedbacks',
-            'BlogsTranslate', 'ServicesTranslate', 'IntroducesTranslate', 'Logo', 'Users', 'Auth'
+            'Base',
+            'Blogs', 'BlogsTranslate',
+            'Slides',
+            'Footers',
+            'Services', 'ServicesTranslate',
+            'Introduces', 'IntroducesTranslate',
+            'Clients',
+            'Feedbacks',
+            'Logo',
+            'Users',
+            'Auth',
+            'Products', 'ProductsTranslate', 'ProductsImage'
         ];
 
         foreach ($repositories as $model) {
