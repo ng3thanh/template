@@ -17,12 +17,11 @@ class CreateProductsTranslateTable extends Migration
             $table->increments('id');
             $table->integer('products_id')->unsigned();
             $table->string('locale')->index();
-
-            $table->string('title', 200);
+            $table->string('name', 200);
+            $table->integer('price')->nullable();
             $table->string('slug', 200);
             $table->text('description');
             $table->text('content');
-
             $table->unique(['products_id','locale']);
             $table->timestamps();
             $table->softDeletes();

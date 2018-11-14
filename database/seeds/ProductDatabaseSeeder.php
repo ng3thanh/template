@@ -19,12 +19,13 @@ class ProductDatabaseSeeder extends Seeder
         DB::table('products_image')->truncate();
         $faker = Faker\Factory::create();
         factory(Products::class, 50)->create()->each(function ($product) use ($faker) {
-            $titleVi = $faker->realText($maxNbChars = 100, $indexSize = 1);
-            $slugVi = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $titleVi)));
+            $nameVi = $faker->realText($maxNbChars = 100, $indexSize = 1);
+            $slugVi = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nameVi)));
             $dataVn = [
                 'products_id' => $product->id,
+                'price' => $faker->numberBetween(100, 1000),
                 'locale' => 'vi',
-                'title' => $titleVi,
+                'name' => $nameVi,
                 'slug' => $slugVi,
                 'description' => $faker->realText(),
                 'content' => $faker->realText(),
@@ -33,12 +34,13 @@ class ProductDatabaseSeeder extends Seeder
             ];
             DB::table('products_translate')->insert($dataVn);
 
-            $titleEn = $faker->realText($maxNbChars = 100, $indexSize = 1);
-            $slugEn = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $titleEn)));
+            $nameEn = $faker->realText($maxNbChars = 100, $indexSize = 1);
+            $slugEn = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nameEn)));
             $dataEn = [
                 'products_id' => $product->id,
+                'price' => $faker->numberBetween(100, 1000),
                 'locale' => 'en',
-                'title' => $titleEn,
+                'name' => $nameEn,
                 'slug' => $slugEn,
                 'description' => $faker->realText(),
                 'content' => $faker->realText(),

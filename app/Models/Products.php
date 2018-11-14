@@ -15,7 +15,7 @@ class Products extends Model
 
     use Translatable;
 
-    public $translatedAttributes = ['title', 'slug', 'description', 'content', 'tags'];
+    public $translatedAttributes = ['locale', 'name', 'price', 'content', 'description'];
 
     /**
      * The table associated with the model.

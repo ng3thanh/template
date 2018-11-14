@@ -1,6 +1,13 @@
 <?php
 
 return [
+    'default' => [
+        'language' => 'vn',
+    ],
+    'language' => [
+        'vi' => 'Vietnamese',
+        'en' => 'English'
+    ],
     'number' => [
         'slide' => [
             'not_show' => 4

@@ -17,40 +17,46 @@ class ProductsEloquentRepository extends BaseEloquentRepository implements Produ
     }
 
     /**
-     * Find by id related slug
-     * @param $id
+     * @param $data
+     * @param null $limit
+     * @param string $orderBy
      * @return mixed
      */
-    public function findByIdRelatedSlug($id)
+    public function getAllProductWithTrash($data, $limit = null, $orderBy = 'created_at')
     {
-        $locale = app()->getLocale();
-        $result = $this->model->join('blogs_translate', 'blogs_translate.blogs_id', '=', 'blogs.id')
-            ->where('blogs_translate.blogs_id', $id)
-            ->where('blogs_translate.locale', $locale)
-            ->first();
+        $result = $this->model->join('products_image', 'products.id', '=', 'products_image.products_id')
+            ->join('products_translate', 'products.id', '=', 'products_translate.products_id')
+            ->select('products.*',
+                'products_image.alt',
+                'products_image.name AS image',
+                'products_translate.name',
+                'products_translate.locale',
+                'products_translate.price',
+                'products_translate.content',
+                'products_translate.description');
+
+        if (isset($data['locale'])) {
+            $result = $result->where('locale', $data['locale']);
+        } else {
+            $result = $result->where('locale', 'vi');
+        }
+
+        if (isset($data['publish_date'])) {
+            $result = $result->where('publish_date', '>=',$data['publish_date']);
+        }
+
+        if (isset($data['end_date'])) {
+            $result = $result->where('end_date', '<=',$data['end_date']);
+        }
+
+        $result = $result->withTrashed()->orderBy($orderBy);
+
+        if ($limit) {
+            $result = $result->paginate($limit);
+        } else {
+            $result = $result->get();
+        }
+
         return $result;
     }
-
-    public function getProductNextDate($id, $date)
-    {
-        $result = $this->model->where('created_at', '>=', $date)
-            ->where('id', '!=', $id)
-            ->first();
-        return $result;
-    }
-
-    public function getProductPreviousDate($id, $date)
-    {
-        $result = $this->model->where('created_at', '<=', $date)
-            ->where('id', '!=', $id)
-            ->first();
-        return $result;
-    }
-
-//    public function getAllProductPaginate($limit)
-//    {
-//        $result = $this->model->paginate($limit);
-//
-//        return $result;
-//    }
 }

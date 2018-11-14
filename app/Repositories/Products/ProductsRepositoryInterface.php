@@ -7,23 +7,10 @@ use App\Repositories\Base\BaseRepositoryInterface;
 interface ProductsRepositoryInterface extends BaseRepositoryInterface
 {
     /**
-     * Find by id related slug
-     * @param $id
+     * @param $data
+     * @param null $limit
+     * @param string $orderBy
      * @return mixed
      */
-    public function findByIdRelatedSlug($id);
-
-    /**
-     * @param $id
-     * @param $date
-     * @return mixed
-     */
-    public function getProductNextDate($id, $date);
-
-    /**
-     * @param $id
-     * @param $date
-     * @return mixed
-     */
-    public function getProductPreviousDate($id, $date);
+    public function getAllProductWithTrash($data, $limit = null, $orderBy = 'created_at');
 }

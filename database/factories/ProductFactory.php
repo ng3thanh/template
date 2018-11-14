@@ -13,12 +13,21 @@ use App\Models\Products;
 | model instances for testing / seeding your application's database.
 |
 */
+$autoIncrement = autoIncrement();
 
-$factory->define(Products::class, function (Faker $faker) {
+$factory->define(Products::class, function (Faker $faker) use ($autoIncrement) {
+    $autoIncrement->next();
     return [
+        'code' => 'PR00' . $autoIncrement->current(),
         'view' => $faker->numberBetween(1,250),
         'publish_date' => $faker->dateTime('2014-02-25 08:37:17'),
         'end_date' => $faker->dateTime('2024-02-25 08:37:17'),
     ];
 });
 
+function autoIncrement()
+{
+    for ($i = 0; $i < 1000; $i++) {
+        yield $i;
+    }
+}

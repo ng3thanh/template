@@ -15,6 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code');
             $table->integer('view')->default(0);
             $table->dateTime('publish_date');
             $table->dateTime('end_date');

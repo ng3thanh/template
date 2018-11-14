@@ -26,15 +26,18 @@ class ProductsController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $limit = config('constant.number.product.paginate.admin');
-        $number = (RequestParameter::get('page','1') - 1)* $limit + 1;
-        $products = $this->productService->getAllProduct($limit);
-        return view('admin.pages.products.index', compact('products', 'number'));
+        $data = $request->all();
+        if (!isset($data['search'])) {
+            $data['publish'] = null;
+        }
+        $languages = config('constant.language');
+        $products = $this->productService->getAdminProductIndex($data);
+        return view('admin.pages.products.index', compact('products', 'languages'));
     }
 
     /**
