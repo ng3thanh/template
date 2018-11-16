@@ -15,19 +15,19 @@
                         <h3 class="box-title">Search products</h3>
                     </div>
                     <div class="box-body">
-                        <form action="{{ route('product.index') }}" method="get">
+                        <form id="search-form" action="{{ route('product.index') }}" method="get">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Product Code</label>
-                                        <input type="text" class="form-control" name="code" placeholder="Example: PR001" value="{{ Request::get('code') or '' }}">
+                                        <input type="text" id="code" class="form-control" name="code" placeholder="Example: PR001" value="{{ app('request')->input('code') }}">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Language</label>
-                                        <select class="form-control select2 wp-100" name="locale">
+                                        <select id="locale" class="form-control select2 wp-100" name="locale">
                                             @foreach($languages as $key => $lang)
-                                                <option value="{{ $key }}">{{ $lang }}</option>
+                                                <option value="{{ $key }}" @if(app('request')->input('locale') == $key) selected @endif>{{ $lang }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -37,7 +37,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Product name</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Product name" value="{{ Request::get('name') or '' }}">
+                                        <input type="text" id="name" class="form-control" name="name" placeholder="Product name" value="{{ app('request')->input('name') }}">
                                     </div>
 
                                     <div class="form-group">
@@ -47,15 +47,17 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" name="publish" id="publish_date">
+                                            <input type="text" class="form-control pull-right" name="publish" id="publish" value="{{ app('request')->input('publish') }}">
                                         </div>
                                     </div>
                                 </div>
 
                                 <input type="hidden" value="1" name="search">
                             </div>
-                            <div>
-                                <button type="submit" class="">Search</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-sm">Search</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button type="button" class="btn btn-sm" id="button-reset">Reset</button>
                             </div>
                         </form>
                     </div>
@@ -132,6 +134,14 @@
             'searching'   : false
         });
 
-        $('#publish_date').daterangepicker();
+        $('#publish').daterangepicker();
+
+        $('#button-reset').click(function () {
+            var date = $.datepicker.formatDate('mm/dd/yy', new Date());
+            $('#code').val("");
+            $('#locale').val("vi");
+            $('#name').val("");
+            $('#publish').val(date + " - " + date);
+        });
     </script>
 @endsection
