@@ -1,22 +1,29 @@
 @extends('admin.layout')
 
-@section('title', 'Create new blog')
+@section('title', 'Create new product')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-tagsinput.css') }}">
+
 @endsection
 
 @section('content')
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Create new blog</h3>
+                <h3 class="box-title">Create new product</h3>
             </div>
-            <div class="box-body">
-                <form role="form" id="create-new-blog" class="form-horizontal" action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
+
+            <div class="box-body with-border">
+                <form role="form"
+                      id="create-new-product"
+                      class="form-horizontal"
+                      action="{{ route('product.store') }}"
+                      method="POST"
+                      enctype="multipart/form-data">
+
                     {{ csrf_field() }}
                     <div class="col-xs-12">
-                        <!-- Custom Tabs -->
+
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
                                 <li class="active">
@@ -64,7 +71,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /.tab-pane -->
+
                                 <div class="tab-pane" id="tab_vn">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label"> Title <span class="span-red">*</span></label>
@@ -102,9 +109,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /.tab-pane -->
 
-                                <!-- nav-tabs-custom -->
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"> Main image <span class="span-red">*</span></label>
                                     <div class="col-sm-9 input-group">
@@ -112,33 +117,34 @@
                                         @include('elements.error_line', ['attribute' => 'image'])
                                     </div>
                                 </div>
-
-                                <div class="button-list col-lg-12">
-                                    <div class="col-lg-8 col-lg-offset-2">
-                                        <div class="col-lg-3">
-                                            <button class="btn btn-block btn-default" form="create-new-blog" type="submit">Create</button>
-                                        </div>
-                                        <div class="col-lg-offset-1 col-lg-3">
-                                            <button class="btn btn-block btn-default" form="create-new-blog" type="reset">Reset</button>
-                                        </div>
-                                        <div class="col-lg-offset-1 col-lg-3">
-                                            <a href="{{ route('blog.index') }}" class="btn btn-block btn-default">Back</a>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <div class="clearfix"></div>
                             </div>
-                            <!-- /.tab-content -->
                         </div>
                     </div>
                 </form>
             </div>
+
+            <div class="box-footer">
+                <div class="button-list col-lg-12">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="col-lg-3">
+                            <button class="btn btn-block btn-default" form="create-new-product" type="submit">Create</button>
+                        </div>
+                        <div class="col-lg-offset-1 col-lg-3">
+                            <button class="btn btn-block btn-default" form="create-new-product" type="reset">Reset</button>
+                        </div>
+                        <div class="col-lg-offset-1 col-lg-3">
+                            <a href="{{ route('product.index') }}" class="btn btn-block btn-default">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 @endsection
 
 @section('script')
-    <script src="{{ asset('admin/js/bootstrap-tagsinput.js') }}"></script>
     <script>
         $(function () {
             var titleEn = $("#title-en");
@@ -147,31 +153,31 @@
             var slugVn = $("#slug-vn");
 
             var contentEditor = CKEDITOR.replace( 'content_ckediter', {
-                filebrowserBrowseUrl: '{{ asset('admin/ckfinder/ckfinder.html') }}',
-                filebrowserImageBrowseUrl: '{{ asset('admin/ckfinder/ckfinder.html?type=Images') }}',
-                filebrowserFlashBrowseUrl: '{{ asset('admin/ckfinder/ckfinder.html?type=Flash') }}',
-                filebrowserUploadUrl: '{{ asset('admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-                filebrowserImageUploadUrl: '{{ asset('admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-                filebrowserFlashUploadUrl: '{{ asset('admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+                filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+                filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+                filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+                filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+                filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+                filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
             });
 
             var contentEditorVn = CKEDITOR.replace( 'content_ckediter_vn', {
-                filebrowserBrowseUrl: '{{ asset('admin/ckfinder/ckfinder.html') }}',
-                filebrowserImageBrowseUrl: '{{ asset('admin/ckfinder/ckfinder.html?type=Images') }}',
-                filebrowserFlashBrowseUrl: '{{ asset('admin/ckfinder/ckfinder.html?type=Flash') }}',
-                filebrowserUploadUrl: '{{ asset('admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-                filebrowserImageUploadUrl: '{{ asset('admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-                filebrowserFlashUploadUrl: '{{ asset('admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+                filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+                filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+                filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+                filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+                filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+                filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
             });
 
             CKFinder.setupCKEditor(contentEditor);
             CKFinder.setupCKEditor(contentEditorVn);
 
-            FormUtil.validate('#create-new-blog');
+            FormUtil.validate('#create-new-product');
             slugCommon.convertSlug(titleEn, slugEn);
             slugCommon.convertSlug(titleVn, slugVn);
 
-            $('#create-new-blog').on('keyup keypress', function(e) {
+            $('#create-new-product').on('keyup keypress', function(e) {
                 var keyCode = e.keyCode || e.which;
                 if (keyCode === 13) {
                     e.preventDefault();
