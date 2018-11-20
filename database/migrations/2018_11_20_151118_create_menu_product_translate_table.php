@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsTable extends Migration
+class CreateMenuProductTranslateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('menu_product_translate', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('menu_id');
-            $table->string('code');
-            $table->integer('view')->default(0);
-            $table->dateTime('publish_date');
-            $table->dateTime('end_date');
+            $table->integer('menu_product_id')->unsigned();
+            $table->string('locale')->index();
+            $table->string('name', 200);
+            $table->string('slug', 200);
+            $table->text('description');
+            $table->unique(['menu_product_id','locale']);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +33,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('menu_product_translate');
     }
 }

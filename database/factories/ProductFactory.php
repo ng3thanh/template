@@ -19,6 +19,7 @@ $factory->define(Products::class, function (Faker $faker) use ($autoIncrement) {
     $autoIncrement->next();
     return [
         'code' => 'PR00' . $autoIncrement->current(),
+        'menu_id' => $faker->numberBetween(1,5),
         'view' => $faker->numberBetween(1,250),
         'publish_date' => $faker->dateTime('2014-02-25 08:37:17'),
         'end_date' => $faker->dateTime('2024-02-25 08:37:17'),
