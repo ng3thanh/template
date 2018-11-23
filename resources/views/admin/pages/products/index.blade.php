@@ -32,6 +32,16 @@
                                         </select>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Publish date</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" name="publish" id="publish" value="{{ app('request')->input('publish') }}">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6">
@@ -41,14 +51,12 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Publish date:</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text" class="form-control pull-right" name="publish" id="publish" value="{{ app('request')->input('publish') }}">
-                                        </div>
+                                        <label>Menu</label>
+                                        <select id="menu" class="form-control select2 wp-100" name="menu">
+                                            @foreach($menu as $key => $value)
+                                                <option value="{{ $key }}" @if(app('request')->input('menu') == $key) selected @endif>{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 

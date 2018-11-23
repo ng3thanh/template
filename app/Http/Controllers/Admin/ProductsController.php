@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\MenusService;
 use App\Services\ProductsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as RequestParameter;
@@ -15,13 +16,21 @@ class ProductsController extends Controller
     protected $productService;
 
     /**
+     * @var MenusService
+     */
+    protected $menuService;
+
+    /**
      * ProductsController constructor.
      * @param ProductsService $productService
+     * @param MenusService $menusService
      */
     public function __construct(
-        ProductsService $productService
+        ProductsService $productService,
+        MenusService $menusService
     ) {
         $this->productService = $productService;
+        $this->menuService = $menusService;
     }
 
     /**
@@ -36,8 +45,10 @@ class ProductsController extends Controller
             $data['publish'] = null;
         }
         $languages = config('constant.language');
+        $menu = $this->menuService->getListActiveMenuProduct();
+        dd($menu);
         $products = $this->productService->getAdminProductIndex($data);
-        return view('admin.pages.products.index', compact('products', 'languages'));
+        return view('admin.pages.products.index', compact('products', 'languages', 'menu'));
     }
 
     /**

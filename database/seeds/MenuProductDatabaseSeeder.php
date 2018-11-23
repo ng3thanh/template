@@ -17,7 +17,7 @@ class MenuProductDatabaseSeeder extends Seeder
         DB::table('menu_product')->truncate();
         DB::table('menu_product_translate')->truncate();
         $faker = Faker\Factory::create();
-        factory(MenuProduct::class, 5)->create()->each(function ($menu) use ($faker) {
+        factory(MenuProduct::class, 15)->create()->each(function ($menu) use ($faker) {
             $nameVi = 'Menu test số ' . $menu->id;
             $slugVi = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nameVi)));
             $dataVn = [

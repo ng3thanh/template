@@ -37,7 +37,8 @@ class AppServiceProvider extends ServiceProvider
             'Logo',
             'Users',
             'Auth',
-            'Products', 'ProductsTranslate', 'ProductsImage'
+            'Products', 'ProductsTranslate', 'ProductsImage',
+            'MenuProduct', 'MenuProductTranslate', 'MenuNew', 'MenuNewTranslate'
         ];
 
         foreach ($repositories as $model) {

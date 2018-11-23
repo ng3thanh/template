@@ -3,6 +3,10 @@
 return [
     'default' => [
         'language' => 'vn',
+        'level_menu' => [
+            'product' => 3,
+            'new' => 2
+        ]
     ],
     'language' => [
         'vi' => 'Vietnamese',

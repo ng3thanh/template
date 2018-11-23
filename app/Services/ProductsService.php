@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
+use App\Repositories\MenuProduct\MenuProductRepositoryInterface;
+use App\Repositories\MenuProductTranslate\MenuProductTranslateRepositoryInterface;
 use App\Repositories\Products\ProductsRepositoryInterface;
 use App\Repositories\ProductsTranslate\ProductsTranslateRepositoryInterface;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+
 use Exception;
-use Illuminate\Support\Facades\DB;
 
 class ProductsService
 {
@@ -20,18 +21,33 @@ class ProductsService
      */
     protected $productsTransRepository;
 
+    /**
+     * @var MenuProductRepositoryInterface
+     */
+    protected $menuProductRepository;
 
     /**
-     * ProductService constructor.
+     * @var MenuProductTranslateRepositoryInterface
+     */
+    protected $menuProductTransRepository;
+
+    /**
+     * ProductsService constructor.
      * @param ProductsRepositoryInterface $productsRepository
      * @param ProductsTranslateRepositoryInterface $productsTransRepository
+     * @param MenuProductRepositoryInterface $menuProductRepository
+     * @param MenuProductTranslateRepositoryInterface $menuProductTranslateRepository
      */
     public function __construct(
         ProductsRepositoryInterface $productsRepository,
-        ProductsTranslateRepositoryInterface $productsTransRepository
+        ProductsTranslateRepositoryInterface $productsTransRepository,
+        MenuProductRepositoryInterface $menuProductRepository,
+        MenuProductTranslateRepositoryInterface $menuProductTranslateRepository
     ) {
         $this->productsRepository = $productsRepository;
         $this->productsTransRepository = $productsTransRepository;
+        $this->menuProductRepository = $menuProductRepository;
+        $this->menuProductTranslateRepository = $menuProductTranslateRepository;
     }
 
     /**

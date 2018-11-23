@@ -16,6 +16,7 @@ class CreateMenuNewTable extends Migration
         Schema::create('menu_new', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id');
+            $table->integer('level')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
