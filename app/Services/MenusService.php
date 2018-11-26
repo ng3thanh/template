@@ -62,7 +62,8 @@ class MenusService
                     $menus[$value['parent_id']]['child'][$value['id']] = $value;
                     break;
                 case 3:
-                    $keyP = 2;
+                    $keyP = $menus[$value['parent_id']]['child']['parent_id'];
+                    dd($keyP);
                     $menus[$keyP]['child'][$value['parent_id']]['child'][$value['id']] = $value;
                     break;
             }
