@@ -49,23 +49,20 @@ class MenusService
         $this->menuProductTranslateRepository = $menuProductTranslateRepository;
     }
 
-    public function getListActiveMenuProduct()
+    public function getMenuForSelectBox()
     {
         $results = $this->menuProductRepository->getActiveMenuProduct()->toArray();
         $menus = [];
         foreach($results as $key => $value) {
-            switch ($value['level']) {
-                case 1:
-                    $menus[$value['id']] = $value;
-                    break;
-                case 2:
-                    $menus[$value['parent_id']]['child'][$value['id']] = $value;
-                    break;
-                case 3:
-                    $keyP = $menus[$value['parent_id']]['child']['parent_id'];
-                    dd($keyP);
+            if ($value['parent_id'] == 0) {
+                $menus[$value['id']] = $value;
+            } elseif (array_key_exists($value['parent_id'], $menus)) {
+                $menus[$value['parent_id']]['child'][$value['id']] = $value;
+            } else {
+                $keyP = $results[$value['parent_id']]['parent_id'];
+                if ($keyP != 0) {
                     $menus[$keyP]['child'][$value['parent_id']]['child'][$value['id']] = $value;
-                    break;
+                }
             }
         }
         return $menus;

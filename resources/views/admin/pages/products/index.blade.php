@@ -52,9 +52,21 @@
 
                                     <div class="form-group">
                                         <label>Menu</label>
-                                        <select id="menu" class="form-control select2 wp-100" name="menu">
-                                            @foreach($menu as $key => $value)
-                                                <option value="{{ $key }}" @if(app('request')->input('menu') == $key) selected @endif>{{ $value }}</option>
+                                        <select id="menu" class="form-control select2 wp-100" name="menu_id">
+                                            @foreach($menu as $key1 => $level1)
+                                                <optgroup label="{{ $level1['name'] }}">
+                                                    <option value="{{ $key1 }}" @if(app('request')->input('menu') == $key1) selected @endif>{{ $level1['name'] }}</option>
+                                                    @if(isset($level1['child']))
+                                                        @foreach($level1['child'] as $key2 => $level2 )
+                                                            <option value="{{ $key2 }}" @if(app('request')->input('menu') == $key2) selected @endif> -- {{ $level2['name'] }}</option>
+                                                            @if(isset($level2['child']))
+                                                                @foreach($level2['child'] as $key3 => $level3 )
+                                                                    <option value="{{ $key3 }}" @if(app('request')->input('menu') == $key3) selected @endif> ----- {{ $level3['name'] }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </optgroup>
                                             @endforeach
                                         </select>
                                     </div>

@@ -41,6 +41,10 @@ class ProductsEloquentRepository extends BaseEloquentRepository implements Produ
             $result = $result->where('locale', 'vi');
         }
 
+        if (isset($data['menu_id'])) {
+            $result = $result->where('menu_id', $data['menu_id']);
+        }
+
         if (isset($data['publish_date'])) {
             $result = $result->where('publish_date', '>=',$data['publish_date']);
         }

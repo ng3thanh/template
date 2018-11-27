@@ -51,6 +51,8 @@ class ProductsService
     }
 
     /**
+     * Get product to index page (admin)
+     * @param $data
      * @return mixed
      */
     public function getAdminProductIndex($data)
@@ -62,8 +64,20 @@ class ProductsService
         } else {
             $data['publish_date']  = null;
             $data['end_date']      = null;
+            $data['menu_id']       = null;
         }
         $data = $this->productsRepository->getAllProductWithTrash($data, null, 'publish_date');
         return $data;
+    }
+
+    /**
+     * Get product data for copy and detail page
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function findProduct($id)
+    {
+        return $this->productsRepository->find($id);
     }
 }

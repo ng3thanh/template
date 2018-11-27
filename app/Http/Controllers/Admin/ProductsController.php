@@ -45,8 +45,7 @@ class ProductsController extends Controller
             $data['publish'] = null;
         }
         $languages = config('constant.language');
-        $menu = $this->menuService->getListActiveMenuProduct();
-        dd($menu);
+        $menu = $this->menuService->getMenuForSelectBox();
         $products = $this->productService->getAdminProductIndex($data);
         return view('admin.pages.products.index', compact('products', 'languages', 'menu'));
     }
@@ -58,7 +57,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.products.create');
+        $languages = config('constant.language');
+        return view('admin.pages.products.create', compact('languages'));
     }
 
     /**

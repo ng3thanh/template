@@ -17,6 +17,5 @@ use App\Models\MenuProduct;
 $factory->define(MenuProduct::class, function (Faker $faker) {
     return [
         'parent_id' => $faker->numberBetween(0,2),
-        'level' => $faker->numberBetween(1,3)
     ];
 });

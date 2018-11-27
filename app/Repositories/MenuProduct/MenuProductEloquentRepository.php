@@ -21,7 +21,7 @@ class MenuProductEloquentRepository extends BaseEloquentRepository implements Me
      */
     public function getActiveMenuProduct()
     {
-        $query = $this->model->orderBy('level')->get();
+        $query = $this->model->orderBy('parent_id')->get();
         return $query;
     }
 }
