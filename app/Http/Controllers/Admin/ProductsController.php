@@ -3,31 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\MenusService;
-use App\Services\ProductsService;
+use App\Services\MenuService;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as RequestParameter;
 
 class ProductsController extends Controller
 {
     /**
-     * @var ProductsService
+     * @var ProductService
      */
     protected $productService;
 
     /**
-     * @var MenusService
+     * @var MenuService
      */
     protected $menuService;
 
     /**
      * ProductsController constructor.
-     * @param ProductsService $productService
-     * @param MenusService $menusService
+     * @param ProductService $productService
+     * @param MenuService $menusService
      */
     public function __construct(
-        ProductsService $productService,
-        MenusService $menusService
+        ProductService $productService,
+        MenuService $menusService
     ) {
         $this->productService = $productService;
         $this->menuService = $menusService;

@@ -22,102 +22,40 @@
                       enctype="multipart/form-data">
 
                     {{ csrf_field() }}
-                    <div class="col-xs-12">
-
-                        <div class="nav-tabs-custom">
-                            <ul class="nav nav-tabs">
-                                <li class="active">
-                                    <a href="#tab_en" data-toggle="tab" aria-expanded="true">English</a>
-                                </li>
-                                <li class="">
-                                    <a href="#tab_vn" data-toggle="tab" aria-expanded="false">Vietnamese</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="tab_en">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Title <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <input type="text" id="title-en" name="trans[en][title]" data-rule-required="true" maxlength="200" class="form-control" placeholder="Title ..." value="{{ old('trans.en.title') }}">
-                                            @include('elements.error_line', ['attribute' => 'trans.en.title'])
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Slug <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <input type="text" id="slug-en" name="trans[en][slug]" data-rule-required="true" maxlength="200" class="form-control" value="{{ old('trans.en.slug') }}">
-                                            @include('elements.error_line', ['attribute' => 'trans.en.slug'])
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Description <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <textarea class="form-control" id="des_ckediter" name="trans[en][description]" maxlength="1000" data-rule-required="true" rows="4" cols="80">{{ old('trans.en.description') }}</textarea>
-                                            @include('elements.error_line', ['attribute' => 'trans.en.description'])
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Content <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <textarea class="form-control" id="content_ckediter" name="trans[en][content]" maxlength="20000" rows="10" cols="80">{{ old('trans.en.content') }}</textarea>
-                                            @include('elements.error_line', ['attribute' => 'trans.en.content'])
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Tag <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <input type="text" id="tag-en" name="trans[en][tags]" class="form-control" maxlength="200" data-rule-required="true" data-role="tagsinput" value="{{ old('trans.en.tags') }}">
-                                            @include('elements.error_line', ['attribute' => 'trans.en.tags'])
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane" id="tab_vn">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Title <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <input type="text" id="title-vn" name="trans[vi][title]" class="form-control" maxlength="200" data-rule-required="true" placeholder="Title ..." value="{{ old('trans.vi.title') }}">
-                                            @include('elements.error_line', ['attribute' => 'trans.vi.title'])
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Slug <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <input type="text" id="slug-vn" name="trans[vi][slug]" class="form-control" maxlength="200" data-rule-required="true" value="{{ old('trans.vi.slug') }}">
-                                            @include('elements.error_line', ['attribute' => 'trans.vi.slug'])
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Description <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <textarea class="form-control" id="des_ckediter_vn" name="trans[vi][description]" maxlength="1000" data-rule-required="true" rows="4" cols="80">{{ old('trans.vi.description') }}</textarea>
-                                            @include('elements.error_line', ['attribute' => 'trans.vi.description'])
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Content <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <textarea class="form-control" id="content_ckediter_vn" name="trans[vi][content]" maxlength="20000" rows="10" cols="80">{{ old('trans.vi.content') }}</textarea>
-                                            @include('elements.error_line', ['attribute' => 'trans.vi.content'])
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Tag <span class="span-red">*</span></label>
-                                        <div class="col-sm-9 input-group">
-                                            <input type="text" id="tag-vn" name="trans[vi][tags]" class="form-control" maxlength="200" data-rule-required="true" data-role="tagsinput" value="{{ old('trans.vi.tags') }}">
-                                            @include('elements.error_line', ['attribute' => 'trans.vi.tags'])
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label"> Main image <span class="span-red">*</span></label>
-                                    <div class="col-sm-9 input-group">
-                                        <input type="file" class="form-control" data-rule-required="true" name="image">
-                                        @include('elements.error_line', ['attribute' => 'image'])
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title-en"> Title <span class="span-red">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" id="title-en" name="trans[en][title]" data-rule-required="true" maxlength="200" class="form-control" placeholder="Title ..." value="{{ old('trans.en.title') }}">
+                                @include('elements.error_line', ['attribute' => 'trans.en.title'])
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="slug-en"> Slug <span class="span-red">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" id="slug-en" name="trans[en][slug]" data-rule-required="true" maxlength="200" class="form-control" value="{{ old('trans.en.slug') }}">
+                                @include('elements.error_line', ['attribute' => 'trans.en.slug'])
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="des_ckediter"> Description <span class="span-red">*</span></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="des_ckediter" name="trans[en][description]" maxlength="1000" data-rule-required="true" rows="4" cols="80">{{ old('trans.en.description') }}</textarea>
+                                @include('elements.error_line', ['attribute' => 'trans.en.description'])
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="content_ckediter"> Content <span class="span-red">*</span></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="content_ckediter" name="trans[en][content]" maxlength="20000" rows="10" cols="80">{{ old('trans.en.content') }}</textarea>
+                                @include('elements.error_line', ['attribute' => 'trans.en.content'])
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="tag-en"> Tag <span class="span-red">*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" id="tag-en" name="trans[en][tags]" class="form-control" maxlength="200" data-rule-required="true" data-role="tagsinput" value="{{ old('trans.en.tags') }}">
+                                @include('elements.error_line', ['attribute' => 'trans.en.tags'])
                             </div>
                         </div>
                     </div>

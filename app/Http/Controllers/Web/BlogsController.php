@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Services\BlogsService;
+use App\Services\NewService;
 use Carbon\Carbon;
 
 class BlogsController extends Controller
 {
     /**
-     * @var BlogsService
+     * @var NewService
      */
     protected $blogService;
 
     /**
      * BlogsController constructor.
-     * @param BlogsService $blogService
+     * @param NewService $blogService
      */
     public function __construct(
-        BlogsService $blogService
+        NewService $blogService
     ) {
         $this->blogService = $blogService;
     }

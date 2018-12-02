@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\SettingsService;
+use App\Services\SettingService;
 use App\Services\SlideService;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
     /**
-     * @var SettingsService
+     * @var SettingService
      */
     protected $settingService;
 
     /**
      * SettingsController constructor.
-     * @param SettingsService $settingService
+     * @param SettingService $settingService
      */
     public function __construct(
-        SettingsService $settingService
+        SettingService $settingService
     ) {
         $this->settingService = $settingService;
     }

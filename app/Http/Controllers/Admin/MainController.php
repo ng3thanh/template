@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\BlogsService;
+use App\Services\NewService;
 use App\Services\ClientService;
 use App\Services\FeedbackService;
 use App\Services\ServiceService;
@@ -12,9 +12,9 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 class MainController extends Controller
 {
     /**
-     * @var BlogsService
+     * @var NewService
      */
-    protected $blogService;
+    protected $newService;
 
     /**
      * @var ClientService
@@ -34,19 +34,19 @@ class MainController extends Controller
     /**
      * MainController constructor.
      *
-     * @param BlogsService $blogService
+     * @param NewService $newService
      * @param ClientService $clientService
      * @param ServiceService $serviceService
      * @param FeedbackService $feedbackService
      */
 
     public function __construct(
-        BlogsService $blogService,
+        NewService $newService,
         ClientService $clientService,
         ServiceService $serviceService,
         FeedbackService $feedbackService
     ) {
-        $this->blogService = $blogService;
+        $this->newService = $newService;
         $this->clientService = $clientService;
         $this->serviceService = $serviceService;
         $this->feedbackService = $feedbackService;
@@ -59,12 +59,12 @@ class MainController extends Controller
      */
     public function index()
     {
-        $blogCount = $this->blogService->countBlog();
+        $newCount = $this->newService->countNew();
 //        $clientCount = $this->clientService->countClient();
         $clientCount = 0;
         $serviceCount = $this->serviceService->countService();
         $contactCount = $this->feedbackService->countFeedback();
-        $views = $this->blogService->getBlogViewJson(20);
-        return view('admin.dashboard', compact('blogCount', 'clientCount', 'serviceCount', 'contactCount', 'views'));
+        $views = $this->newService->getNewViewJson(20);
+        return view('admin.dashboard', compact('newCount', 'clientCount', 'serviceCount', 'contactCount', 'views'));
     }
 }

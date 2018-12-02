@@ -149,7 +149,7 @@
                                             <button class="btn btn-block btn-default" form="update-blog" type="reset">Reset</button>
                                         </div>
                                         <div class="col-lg-offset-1 col-lg-3">
-                                            <a href="{{ route('blog.index') }}" class="btn btn-block btn-default">Back</a>
+                                            <a href="{{ route('new.index') }}" class="btn btn-block btn-default">Back</a>
                                         </div>
                                     </div>
                                 </div>

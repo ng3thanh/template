@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Services\BlogsService;
+use App\Services\NewService;
 use App\Services\ClientService;
 use App\Services\ServiceService;
-use App\Services\SettingsService;
+use App\Services\SettingService;
 
 class MainController extends Controller
 {
     /**
-     * @var BlogsService
+     * @var NewService
      */
     protected $blogService;
 
@@ -26,23 +26,23 @@ class MainController extends Controller
     protected $serviceService;
 
     /**
-     * @var SettingsService
+     * @var SettingService
      */
     protected $settingsService;
 
     /**
      * MainController constructor.
      *
-     * @param BlogsService $blogService
+     * @param NewService $blogService
      * @param ClientService $clientService
      * @param ServiceService $serviceService
-     * @param SettingsService $settingsService
+     * @param SettingService $settingsService
      */
     public function __construct(
-        BlogsService $blogService,
+        NewService $blogService,
         ClientService $clientService,
         ServiceService $serviceService,
-        SettingsService $settingsService
+        SettingService $settingsService
     ) {
         $this->blogService = $blogService;
         $this->clientService = $clientService;

@@ -15,13 +15,13 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>{{ $blogCount }}</h3>
-                        <p>Blogs</p>
+                        <h3>{{ $newCount }}</h3>
+                        <p>News</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-document"></i>
                     </div>
-                    <a href="{{ route('blog.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('new.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -82,7 +82,7 @@
             {{--<!-- /.nav-tabs-custom -->--}}
         {{--</div>--}}
 
-        <input type="hidden" id="data-chart-blog" value="{{ $views }}">
+        <input type="hidden" id="data-chart-new" value="{{ $views }}">
     </section>
     <!-- /.content -->
 

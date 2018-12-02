@@ -6,9 +6,9 @@
     $clientIndexActive = request()->route()->getName() == 'clients.index' ? 'active' : '';
     $clientCreateActive = request()->route()->getName() == 'clients.create' ? 'active' : '';
     $clientActive = (!empty($clientIndexActive) || !empty($clientCreateActive)) ? 'active' : '';
-    $blogIndexActive = request()->route()->getName() == 'blog.index' ? 'active' : '';
-    $blogCreateActive = request()->route()->getName() == 'blog.create' ? 'active' : '';
-    $blogActive = (!empty($blogIndexActive) || !empty($blogCreateActive)) ? 'active' : '';
+    $newIndexActive = request()->route()->getName() == 'new.index' ? 'active' : '';
+    $newCreateActive = request()->route()->getName() == 'new.create' ? 'active' : '';
+    $newActive = (!empty($newIndexActive) || !empty($newCreateActive)) ? 'active' : '';
 @endphp
 
 <aside class="main-sidebar">
@@ -133,23 +133,23 @@
                 </ul>
             </li>
 
-            <li class="treeview {{ $blogActive }}">
+            <li class="treeview {{ $newActive }}">
                 <a href="#">
                     <i class="fa fa-calendar"></i>
-                    <span> Blogs</span>
+                    <span> News</span>
                     <span class="pull-right-container"> 
 						<i class="fa fa-angle-left pull-right"></i>
 					</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ $blogIndexActive }}">
-                        <a href="{{ route('blog.index') }}">
-                            <i class="fa fa-asterisk"></i> Blogs index
+                    <li class="{{ $newIndexActive }}">
+                        <a href="{{ route('new.index') }}">
+                            <i class="fa fa-asterisk"></i> News index
                         </a>
                     </li>
-                    <li class="{{ $blogCreateActive }}">
-                        <a href="{{ route('blog.create') }}">
-                            <i class="fa fa-edit"></i> Add blog
+                    <li class="{{ $newCreateActive }}">
+                        <a href="{{ route('new.create') }}">
+                            <i class="fa fa-edit"></i> Add new
                         </a>
                     </li>
                 </ul>

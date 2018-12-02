@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\MenuProduct;
+use App\Models\ProductsMenu;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use App\Models\MenuProduct;
 |
 */
 
-$factory->define(MenuProduct::class, function (Faker $faker) {
+$factory->define(ProductsMenu::class, function (Faker $faker) {
     return [
         'parent_id' => $faker->numberBetween(0,2),
     ];

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\UsersService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Mail;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
@@ -12,15 +12,15 @@ use Centaur\Mail\CentaurWelcomeEmail;
 class UsersController extends Controller
 {
     /**
-     * @var UsersService
+     * @var UserService
      */
     protected $userService;
 
     /**
      * UsersController constructor.
-     * @param UsersService $userService
+     * @param UserService $userService
      */
-    public function __construct(UsersService $userService)
+    public function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }

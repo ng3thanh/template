@@ -20,10 +20,10 @@ Route::middleware('guest')->namespace('Web')->group(function () {
         // Send contact
         Route::post('feedback', 'FeedbacksController@store')->name('feedbacks.store');
 
-        // Blogs
-        Route::prefix('blogs')->group(function () {
-            Route::get('list/', 'BlogsController@index')->name('blogs.index');
-            Route::get('{id}/{slug}', 'BlogsController@show')->name('blogs.detail');
+        // News
+        Route::prefix('news')->group(function () {
+            Route::get('list/', 'NewsController@index')->name('news.index');
+            Route::get('{id}/{slug}', 'NewsController@show')->name('news.detail');
         });
 
         // Services
@@ -58,10 +58,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         Route::post('product/restore/{id}', 'ProductsController@restore')->name('product.restore');
         Route::get('product/copy/{id}', 'ProductsController@copy')->name('product.copy');
 
-        // Blogs
-        Route::resource('blog', 'BlogsController');
-        Route::post('blog/restore/{id}', 'BlogsController@restore')->name('blog.restore');
-        Route::get('blog/copy/{id}', 'BlogsController@copy')->name('blog.copy');
+        // News
+        Route::resource('new', 'NewsController');
+        Route::post('new/restore/{id}', 'NewsController@restore')->name('new.restore');
+        Route::get('new/copy/{id}', 'NewsController@copy')->name('new.copy');
 
         // Clients
         Route::resource('clients', 'ClientsController');

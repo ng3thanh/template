@@ -104,7 +104,7 @@ class ClientsController extends Controller
     {
         $result = $this->clientService->deleteClient($client->id);
         if ($result) {
-            return redirect()->route('blog.index')->with('success', 'Delete data successfully!');
+            return redirect()->route('new.index')->with('success', 'Delete data successfully!');
         } else {
             return redirect()->back()->with('error', 'Having error when delete data')->withInput();
         }
