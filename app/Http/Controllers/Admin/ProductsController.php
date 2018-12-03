@@ -58,7 +58,8 @@ class ProductsController extends Controller
     public function create()
     {
         $languages = config('constant.language');
-        return view('admin.pages.products.create', compact('languages'));
+        $menu = $this->menuService->getMenuForSelectBox();
+        return view('admin.pages.products.create', compact('languages', 'menu'));
     }
 
     /**

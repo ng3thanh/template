@@ -9,5 +9,5 @@ interface ProductsMenuRepositoryInterface extends BaseRepositoryInterface
     /**
      * @return mixed
      */
-    public function getActiveMenuProduct();
+    public function getActiveProductsMenu();
 }

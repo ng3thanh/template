@@ -19,7 +19,7 @@ class ProductsMenuEloquentRepository extends BaseEloquentRepository implements P
     /**
      * @return mixed
      */
-    public function getActiveMenuProduct()
+    public function getActiveProductsMenu()
     {
         $query = $this->model->orderBy('parent_id')->get();
         return $query;

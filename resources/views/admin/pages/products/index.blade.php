@@ -100,7 +100,7 @@
                                     <tr class="body-table @if($product->deleted_at) deleted_tr @endif">
                                         <td>{{ $product->id }}</td>
                                         <td class="text-left m-w-200">
-                                            <a href="{{ route('blogs.detail', ['id' => $product->id, 'slug' => $product->slug]) }}" target="_blank">
+                                            <a href="{{ route('news.detail', ['id' => $product->id, 'slug' => $product->slug]) }}" target="_blank">
                                                 <span class="short-text">{{ $product->name }}</span>
                                             </a>
                                         </td>
