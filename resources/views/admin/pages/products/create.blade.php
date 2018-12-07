@@ -49,59 +49,169 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="title-en"> Title
+                                <label class="col-sm-3 control-label" for="menu_id"> Origin
                                     <span class="span-red">*</span>
                                 </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="title-en" name="trans[en][title]" data-rule-required="true"
-                                           maxlength="200" class="form-control" placeholder="Title ..."
-                                           value="{{ old('trans.en.title') }}">
+                                    <select id="origin_id" class="form-control select2 wp-100" name="origin_id">
+
+                                    </select>
                                     @include('elements.error_line', ['attribute' => 'trans.en.title'])
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="slug-en"> Slug
+                                <label class="col-sm-3 control-label" for="code"> Code
                                     <span class="span-red">*</span>
                                 </label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="slug-en" name="trans[en][slug]" data-rule-required="true"
-                                           maxlength="200" class="form-control" value="{{ old('trans.en.slug') }}">
-                                    @include('elements.error_line', ['attribute' => 'trans.en.slug'])
+                                    <input type="text" id="code" name="code" data-rule-required="true"
+                                           maxlength="200" class="form-control" placeholder="Example: PR001"
+                                           value="{{ old('code') }}">
+                                    @include('elements.error_line', ['attribute' => 'code'])
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="des_ckediter"> Description
-                                    <span class="span-red">*</span></label>
+                                <label class="col-sm-3 control-label" for="price"> Price</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="des_ckediter" name="trans[en][description]"
-                                              maxlength="1000" data-rule-required="true" rows="4"
-                                              cols="80">{{ old('trans.en.description') }}</textarea>
-                                    @include('elements.error_line', ['attribute' => 'trans.en.description'])
+                                    <input type="text" id="price" name="price" maxlength="200"
+                                           class="form-control" value="{{ old('price') }}">
+                                    @include('elements.error_line', ['attribute' => 'price'])
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="content_ckediter"> Content
-                                    <span class="span-red">*</span>
-                                </label>
+                                <label class="col-sm-3 control-label" for="menu_id"> Mass</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="content_ckediter" name="trans[en][content]"
-                                              maxlength="20000" rows="10"
-                                              cols="80">{{ old('trans.en.content') }}</textarea>
-                                    @include('elements.error_line', ['attribute' => 'trans.en.content'])
+                                    <div class="col-sm-6">
+                                        <input type="text" id="mass" name="mass" maxlength="200" class="form-control" value="{{ old('mass') }}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-control">
+                                            <option>Kg</option>
+                                        </select>
+                                    </div>
+                                    @include('elements.error_line', ['attribute' => 'code'])
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="quantity"> Quantity</label>
+                                <div class="col-sm-9">
+                                    <div class="col-sm-6">
+                                        <input type="text" id="quantity" name="quantity" maxlength="200" class="form-control" value="{{ old('quantity') }}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-control">
+                                            <option>Package</option>
+                                        </select>
+                                    </div>
+                                    @include('elements.error_line', ['attribute' => 'quantity'])
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title font-15">Product image</h3>
+                    </div>
+
+                    <div class="box-body with-border">
+                        <div class="col-md-12">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="homeimg" id="homeimg" value="">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" id="selectimg">
+                                                <em class="fa fa-folder-open-o fa-fix">&nbsp;</em>
+                                            </button>
+							            </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text"
+                                           maxlength="255" name="homeimgalt"
+                                           placeholder="Chú thích cho hình minh họa (phần chi tiết sản phẩm)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="button" class="btn btn-info" onclick="nv_add_otherimage();" value="More image">
+                        </div>
+                    </div>
+                </div>
+
+                @foreach($languages as $lang)
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <h3 class="box-title font-15">Detail information - {{ $lang }}</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="box-body with-border">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="title-en"> Title
+                                        <span class="span-red">*</span>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="title-en" name="trans[en][title]" data-rule-required="true"
+                                               maxlength="200" class="form-control" placeholder="Title ..."
+                                               value="{{ old('trans.en.title') }}">
+                                        @include('elements.error_line', ['attribute' => 'trans.en.title'])
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="slug-en"> Slug
+                                        <span class="span-red">*</span>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="slug-en" name="trans[en][slug]" data-rule-required="true"
+                                               maxlength="200" class="form-control" value="{{ old('trans.en.slug') }}">
+                                        @include('elements.error_line', ['attribute' => 'trans.en.slug'])
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="des_ckediter"> Description
+                                        <span class="span-red">*</span></label>
+                                    <div class="col-sm-9">
+                                    <textarea class="form-control" id="des_ckediter" name="trans[en][description]"
+                                              maxlength="1000" data-rule-required="true" rows="4"
+                                              cols="80">{{ old('trans.en.description') }}</textarea>
+                                        @include('elements.error_line', ['attribute' => 'trans.en.description'])
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="content_ckediter"> Content
+                                        <span class="span-red">*</span>
+                                    </label>
+                                    <div class="col-sm-9">
+                                    <textarea class="form-control" id="content_ckediter" name="trans[en][content]"
+                                              maxlength="20000" rows="10"
+                                              cols="80">{{ old('trans.en.content') }}</textarea>
+                                        @include('elements.error_line', ['attribute' => 'trans.en.content'])
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
+
             <div class="col-md-4">
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <h3 class="box-title font-15">Publish date</h3>
                     </div>
                     <div class="box-body with-border">
-                        <input type="text" id="" name="" maxlength="200" class="form-control"
-                               value="{{ old('trans.en.title') }}">
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" id="datepicker">
+                        </div>
                     </div>
                 </div>
                 <div class="box box-default">
@@ -109,17 +219,26 @@
                         <h3 class="box-title font-15">End date</h3>
                     </div>
                     <div class="box-body with-border">
-                        <input type="text" id="" name="" maxlength="200" class="form-control"
-                               value="{{ old('trans.en.title') }}">
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" id="datepicker">
+                        </div>
                     </div>
                 </div>
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title font-15">Tag</h3>
+                        <h3 class="box-title font-15">Tags</h3>
                     </div>
                     <div class="box-body with-border">
-                        <input type="text" id="tag-en" name="trans[en][tags]" class="form-control" maxlength="200"
-                               data-role="tagsinput" value="{{ old('trans.en.tags') }}">
+                        @foreach($languages as $keyLang => $language)
+                            <input type="text" id="tag-{{ $keyLang }}" name="trans[{{ $keyLang }}][tags]"
+                               class="form-control" maxlength="200"
+                               placeholder="Tags of {{ $language }}"
+                               data-role="tagsinput">
+                            <br>
+                        @endforeach
                     </div>
                 </div>
             </div>
