@@ -8,9 +8,26 @@ return [
             'new' => 2
         ]
     ],
+    'origin' => [
+        'vi' => 'Việt Nam',
+        'en' => 'English',
+        'cn' => '中国',
+        'kr' => '한국'
+    ],
     'language' => [
         'vi' => 'Vietnamese',
         'en' => 'English'
+    ],
+    'mass' => [
+        'g' => 'Gram',
+        'kg' => 'Kilogram',
+        'm' => 'Meter',
+        'km' => 'Kilometer'
+    ],
+    'quantity' => [
+        'unit' => 'Unit',
+        'package' => 'Package',
+        'roll' => 'Roll'
     ],
     'number' => [
         'slide' => [

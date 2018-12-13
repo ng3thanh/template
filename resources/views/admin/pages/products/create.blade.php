@@ -53,8 +53,10 @@
                                     <span class="span-red">*</span>
                                 </label>
                                 <div class="col-sm-9">
-                                    <select id="origin_id" class="form-control select2 wp-100" name="origin_id">
-
+                                    <select id="origin" class="form-control wp-100" name="origin">
+                                        @foreach($origin as $key => $value)
+                                            <option value="{{ $key }}" @if(old('origin') == $key) selected @endif>{{ $value }}</option>
+                                        @endforeach
                                     </select>
                                     @include('elements.error_line', ['attribute' => 'trans.en.title'])
                                 </div>
@@ -73,8 +75,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="price"> Price</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="price" name="price" maxlength="200"
-                                           class="form-control" value="{{ old('price') }}">
+                                    <input type="text" id="price" name="price" maxlength="200" class="form-control" value="{{ old('price') }}">
                                     @include('elements.error_line', ['attribute' => 'price'])
                                 </div>
                             </div>
@@ -85,8 +86,10 @@
                                         <input type="text" id="mass" name="mass" maxlength="200" class="form-control" value="{{ old('mass') }}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <select class="form-control">
-                                            <option>Kg</option>
+                                        <select id="mass" class="form-control wp-100" name="mass">
+                                            @foreach($mass as $key => $value)
+                                                <option value="{{ $key }}" @if(old('mass') == $key) selected @endif>{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     @include('elements.error_line', ['attribute' => 'code'])
@@ -99,8 +102,10 @@
                                         <input type="text" id="quantity" name="quantity" maxlength="200" class="form-control" value="{{ old('quantity') }}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <select class="form-control">
-                                            <option>Package</option>
+                                        <select id="quantity" class="form-control wp-100" name="quantity">
+                                            @foreach($quantity as $key => $value)
+                                                <option value="{{ $key }}" @if(old('quantity') == $key) selected @endif>{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     @include('elements.error_line', ['attribute' => 'quantity'])
@@ -131,7 +136,7 @@
                                 <div class="form-group">
                                     <input class="form-control" type="text"
                                            maxlength="255" name="homeimgalt"
-                                           placeholder="Chú thích cho hình minh họa (phần chi tiết sản phẩm)">
+                                           placeholder="Annotations for illustrations (Product details section)">
                                 </div>
                             </div>
                         </div>
@@ -141,7 +146,8 @@
                     </div>
                 </div>
 
-                @foreach($languages as $lang)
+                @foreach($languages as $key => $lang)
+                    <input class="check_lang" data-key={{ $key }} data-value="{{ $lang }}" type="hidden">
                     <div class="box box-default">
                         <div class="box-header with-border">
                             <h3 class="box-title font-15">Detail information - {{ $lang }}</h3>
@@ -153,46 +159,48 @@
                         <div class="box-body with-border">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label" for="title-en"> Title
-                                        <span class="span-red">*</span>
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="title-en" name="trans[en][title]" data-rule-required="true"
-                                               maxlength="200" class="form-control" placeholder="Title ..."
-                                               value="{{ old('trans.en.title') }}">
-                                        @include('elements.error_line', ['attribute' => 'trans.en.title'])
-                                    </div>
+                                    <input type="text"
+                                           id="title-{{ $key }}"
+                                           name="trans[{{ $key }}][title]"
+                                           data-rule-required="true"
+                                           maxlength="200"
+                                           class="form-control"
+                                           value="{{ old('trans.en.title') }}"
+                                           placeholder="Title">
+                                    @include('elements.error_line', ['attribute' => 'trans.en.title'])
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label" for="slug-en"> Slug
-                                        <span class="span-red">*</span>
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="slug-en" name="trans[en][slug]" data-rule-required="true"
-                                               maxlength="200" class="form-control" value="{{ old('trans.en.slug') }}">
-                                        @include('elements.error_line', ['attribute' => 'trans.en.slug'])
-                                    </div>
+                                    <input type="text"
+                                           id="slug-{{ $key }}"
+                                           name="trans[{{ $key }}][slug]"
+                                           data-rule-required="true"
+                                           maxlength="200"
+                                           class="form-control"
+                                           value="{{ old('trans.en.slug') }}"
+                                           placeholder="Slug">
+                                    @include('elements.error_line', ['attribute' => 'trans.en.slug'])
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label" for="des_ckediter"> Description
-                                        <span class="span-red">*</span></label>
-                                    <div class="col-sm-9">
-                                    <textarea class="form-control" id="des_ckediter" name="trans[en][description]"
-                                              maxlength="1000" data-rule-required="true" rows="4"
-                                              cols="80">{{ old('trans.en.description') }}</textarea>
-                                        @include('elements.error_line', ['attribute' => 'trans.en.description'])
-                                    </div>
+                                    <textarea class="form-control"
+                                            id="des_ckediter"
+                                            name="trans[{{ $key }}][description]"
+                                            maxlength="1000"
+                                            data-rule-required="true"
+                                            rows="4"
+                                            cols="80">{{ old('trans.en.description') or 'Description' }}</textarea>
+                                    @include('elements.error_line', ['attribute' => 'trans.en.description'])
                                 </div>
+                                <hr>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label" for="content_ckediter"> Content
-                                        <span class="span-red">*</span>
-                                    </label>
-                                    <div class="col-sm-9">
-                                    <textarea class="form-control" id="content_ckediter" name="trans[en][content]"
-                                              maxlength="20000" rows="10"
-                                              cols="80">{{ old('trans.en.content') }}</textarea>
-                                        @include('elements.error_line', ['attribute' => 'trans.en.content'])
-                                    </div>
+                                    <textarea
+                                            class="form-control"
+                                            id="content_ckediter_{{ $key }}"
+                                            name="trans[{{ $key }}][content]"
+                                            maxlength="20000" rows="10"
+                                            cols="80">
+                                        {{ old('trans.en.content') }}
+                                    </textarea>
+                                    @include('elements.error_line', ['attribute' => 'trans.en.content'])
                                 </div>
                             </div>
                         </div>
@@ -265,35 +273,25 @@
 @section('script')
     <script>
         $(function () {
-            var titleEn = $("#title-en");
-            var slugEn = $("#slug-en");
-            var titleVn = $("#title-vn");
-            var slugVn = $("#slug-vn");
 
-            var contentEditor = CKEDITOR.replace('content_ckediter', {
-                filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
-                filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
-                filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
-                filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-                filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-                filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+            $('.check_lang').each(function( index ) {
+                var title = $("#title-" + $(this).data('key'));
+                var slug = $("#slug-" + $(this).data('key'));
+                slugCommon.convertSlug(title, slug);
+
+                var attr = 'content_ckediter_' + $(this).data('key');
+                var contentEditor = CKEDITOR.replace(attr, {
+                    filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+                    filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+                    filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+                    filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+                    filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+                    filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+                });
+                CKFinder.setupCKEditor(contentEditor);
             });
-
-            var contentEditorVn = CKEDITOR.replace('content_ckediter_vn', {
-                filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
-                filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
-                filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
-                filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-                filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-                filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-            });
-
-            CKFinder.setupCKEditor(contentEditor);
-            CKFinder.setupCKEditor(contentEditorVn);
 
             FormUtil.validate('#create-new-product');
-            slugCommon.convertSlug(titleEn, slugEn);
-            slugCommon.convertSlug(titleVn, slugVn);
 
             $('#create-new-product').on('keyup keypress', function (e) {
                 var keyCode = e.keyCode || e.which;

@@ -7,6 +7,7 @@ use App\Services\MenuService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as RequestParameter;
+use App\Http\Requests\ProductsPostRequest;
 
 class ProductsController extends Controller
 {
@@ -57,9 +58,12 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $languages = config('constant.language');
+        $languages  = config('constant.language');
+        $origin     = config('constant.origin');
+        $mass       = config('constant.mass');
+        $quantity   = config('constant.quantity');
         $menu = $this->menuService->getMenuForSelectBox();
-        return view('admin.pages.products.create', compact('languages', 'menu'));
+        return view('admin.pages.products.create', compact('languages', 'menu', 'mass', 'quantity', 'origin'));
     }
 
     /**
@@ -69,6 +73,7 @@ class ProductsController extends Controller
      */
     public function store(ProductsPostRequest $request) {
         $data = $request->except('_token');
+        dd($data);
         $result = $this->productService->createProduct($data);
         if ($result) {
             return redirect()->route('product.index')->with('success', 'Create new data successfully!');
