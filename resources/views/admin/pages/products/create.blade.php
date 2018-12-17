@@ -45,7 +45,7 @@
                                             </optgroup>
                                         @endforeach
                                     </select>
-                                    @include('elements.error_line', ['attribute' => 'trans.en.title'])
+                                    @include('elements.error_line', ['attribute' => 'menu_id'])
                                 </div>
                             </div>
                             <div class="form-group">
@@ -58,7 +58,7 @@
                                             <option value="{{ $key }}" @if(old('origin') == $key) selected @endif>{{ $value }}</option>
                                         @endforeach
                                     </select>
-                                    @include('elements.error_line', ['attribute' => 'trans.en.title'])
+                                    @include('elements.error_line', ['attribute' => 'origin'])
                                 </div>
                             </div>
                             <div class="form-group">
@@ -92,7 +92,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @include('elements.error_line', ['attribute' => 'code'])
+                                    @include('elements.error_line', ['attribute' => 'mass'])
                                 </div>
                             </div>
                             <div class="form-group">
@@ -122,10 +122,10 @@
 
                     <div class="box-body with-border">
                         <div class="col-md-12">
-                            <div class="panel-body">
+                            <div class="panel-body" id="image_box_1">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input class="form-control" type="text" name="homeimg" id="homeimg" value="">
+                                        <input class="form-control" type="text" name="image" id="image" value="">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="button" id="selectimg">
                                                 <em class="fa fa-folder-open-o fa-fix">&nbsp;</em>
@@ -135,13 +135,13 @@
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" type="text"
-                                           maxlength="255" name="homeimgalt"
+                                           maxlength="255" name="image_alt"
                                            placeholder="Annotations for illustrations (Product details section)">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <input type="button" class="btn btn-info" onclick="nv_add_otherimage();" value="More image">
+                            <button type="button" class="btn btn-info" onclick="addOtherImage();">More image</button>
                         </div>
                     </div>
                 </div>
@@ -301,5 +301,20 @@
                 }
             });
         });
+
+        function addOtherImage() {
+            // get the last DIV which ID starts with ^= "klon"
+            var $div = $('div[id^="image_box_"]:last');
+            console.log($div);
+            // Read the Number from that DIV's ID (i.e: 3 from "klon3")
+            // And increment that number by 1
+            var num = parseInt( $div.prop("id").match(/\d+/g), 10 ) +1;
+
+            // Clone it and assign the new ID (i.e: from num 4 to ID "klon4")
+            var $klon = $div.clone().prop('id', 'image_box_'+num );
+
+            // Finally insert $klon wherever you want
+            $div.after( $klon );
+        }
     </script>
 @endsection

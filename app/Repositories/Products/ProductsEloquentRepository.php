@@ -24,7 +24,7 @@ class ProductsEloquentRepository extends BaseEloquentRepository implements Produ
      */
     public function getAllProductWithTrash($data, $limit = null, $orderBy = 'created_at')
     {
-        $result = $this->model->join('products_image', 'products.id', '=', 'products_image.products_id')
+        $result = $this->model->leftJoin('products_image', 'products.id', '=', 'products_image.products_id')
             ->join('products_translate', 'products.id', '=', 'products_translate.products_id')
             ->select('products.*',
                 'products_image.alt',
