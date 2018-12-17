@@ -23,7 +23,6 @@ class ProductDatabaseSeeder extends Seeder
             $slugVi = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nameVi)));
             $dataVn = [
                 'products_id' => $product->id,
-                'price' => $faker->numberBetween(100, 1000),
                 'locale' => 'vi',
                 'name' => $nameVi,
                 'slug' => $slugVi,
@@ -38,7 +37,6 @@ class ProductDatabaseSeeder extends Seeder
             $slugEn = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nameEn)));
             $dataEn = [
                 'products_id' => $product->id,
-                'price' => $faker->numberBetween(100, 1000),
                 'locale' => 'en',
                 'name' => $nameEn,
                 'slug' => $slugEn,

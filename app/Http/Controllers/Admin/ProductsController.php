@@ -73,7 +73,6 @@ class ProductsController extends Controller
      */
     public function store(ProductsPostRequest $request) {
         $data = $request->except('_token');
-        dd($data);
         $result = $this->productService->createProduct($data);
         if ($result) {
             return redirect()->route('product.index')->with('success', 'Create new data successfully!');

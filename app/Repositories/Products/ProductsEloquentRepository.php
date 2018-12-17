@@ -31,7 +31,6 @@ class ProductsEloquentRepository extends BaseEloquentRepository implements Produ
                 'products_image.name AS image',
                 'products_translate.name',
                 'products_translate.locale',
-                'products_translate.price',
                 'products_translate.content',
                 'products_translate.description');
 

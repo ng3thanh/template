@@ -18,7 +18,6 @@ class CreateProductsTranslateTable extends Migration
             $table->integer('products_id')->unsigned();
             $table->string('locale')->index();
             $table->string('name', 200);
-            $table->integer('price')->nullable();
             $table->string('slug', 200);
             $table->text('description');
             $table->text('content');

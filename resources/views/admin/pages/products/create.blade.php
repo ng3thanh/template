@@ -86,7 +86,7 @@
                                         <input type="text" id="mass" name="mass" maxlength="200" class="form-control" value="{{ old('mass') }}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <select id="mass" class="form-control wp-100" name="mass">
+                                        <select id="mass" class="form-control wp-100" name="mass_unit">
                                             @foreach($mass as $key => $value)
                                                 <option value="{{ $key }}" @if(old('mass') == $key) selected @endif>{{ $value }}</option>
                                             @endforeach
@@ -102,7 +102,7 @@
                                         <input type="text" id="quantity" name="quantity" maxlength="200" class="form-control" value="{{ old('quantity') }}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <select id="quantity" class="form-control wp-100" name="quantity">
+                                        <select id="quantity" class="form-control wp-100" name="quantity_unit">
                                             @foreach($quantity as $key => $value)
                                                 <option value="{{ $key }}" @if(old('quantity') == $key) selected @endif>{{ $value }}</option>
                                             @endforeach
@@ -160,12 +160,12 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text"
-                                           id="title-{{ $key }}"
-                                           name="trans[{{ $key }}][title]"
+                                           id="name-{{ $key }}"
+                                           name="trans[{{ $key }}][name]"
                                            data-rule-required="true"
                                            maxlength="200"
                                            class="form-control"
-                                           value="{{ old('trans.en.title') }}"
+                                           value="{{ old('trans.en.name') }}"
                                            placeholder="Title">
                                     @include('elements.error_line', ['attribute' => 'trans.en.title'])
                                 </div>
@@ -187,7 +187,7 @@
                                             maxlength="1000"
                                             data-rule-required="true"
                                             rows="4"
-                                            cols="80">{{ old('trans.en.description') or 'Description' }}</textarea>
+                                            cols="80">{{ old('trans.en.description', 'Description') }}</textarea>
                                     @include('elements.error_line', ['attribute' => 'trans.en.description'])
                                 </div>
                                 <hr>
@@ -198,7 +198,7 @@
                                             name="trans[{{ $key }}][content]"
                                             maxlength="20000" rows="10"
                                             cols="80">
-                                        {{ old('trans.en.content') }}
+                                        {{ old('trans.en.content', 'Content') }}
                                     </textarea>
                                     @include('elements.error_line', ['attribute' => 'trans.en.content'])
                                 </div>
@@ -241,7 +241,7 @@
                     </div>
                     <div class="box-body with-border">
                         @foreach($languages as $keyLang => $language)
-                            <input type="text" id="tag-{{ $keyLang }}" name="trans[{{ $keyLang }}][tags]"
+                            <input type="text" id="tag-{{ $keyLang }}"
                                class="form-control" maxlength="200"
                                placeholder="Tags of {{ $language }}"
                                data-role="tagsinput">
@@ -275,9 +275,9 @@
         $(function () {
 
             $('.check_lang').each(function( index ) {
-                var title = $("#title-" + $(this).data('key'));
+                var name = $("#name-" + $(this).data('key'));
                 var slug = $("#slug-" + $(this).data('key'));
-                slugCommon.convertSlug(title, slug);
+                slugCommon.convertSlug(name, slug);
 
                 var attr = 'content_ckediter_' + $(this).data('key');
                 var contentEditor = CKEDITOR.replace(attr, {

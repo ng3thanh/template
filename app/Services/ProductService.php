@@ -8,6 +8,7 @@ use App\Repositories\Products\ProductsRepositoryInterface;
 use App\Repositories\ProductsTranslate\ProductsTranslateRepositoryInterface;
 
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ProductService
 {
@@ -79,5 +80,52 @@ class ProductService
     public function findProduct($id)
     {
         return $this->productsRepository->find($id);
+    }
+
+    public function createProduct($data)
+    {
+        try {
+            DB::beginTransaction();
+
+            // Get image
+            if (isset($data['image'])) {
+                $file = $data['image'];
+                unset($data['image']);
+            }
+
+            // Save data of base product
+            $data['author'] = auth()->user()->username;
+            $dataMain = formatDataBaseOnTable('products', $data);
+
+            $result = $this->productsRepository->create($dataMain);
+
+            // Update image to base product
+//            if ($result) {
+//                $newName = uploadImage($result->id, $file, 'product');
+//                $this->productsRepository->update(
+//                    $result->id,
+//                    [
+//                        'image' => config('upload.product') . $result->id . '/' . $newName
+//                    ]);
+//            }
+
+            // Save translate data
+            $dataTranslates = $data['trans'];
+
+            foreach ($dataTranslates as $key => $value) {
+                $productTranslate = $value;
+                $productTranslate['locale'] = $key;
+                $productTranslate['products_id'] = $result->id;
+                $this->productsTransRepository->create($productTranslate);
+            }
+
+            DB::commit();
+            return true;
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            logger(__METHOD__ . ' - Error: '. $e->getMessage());
+            DB::rollBack();
+            return false;
+        }
     }
 }
