@@ -12,11 +12,11 @@
     </head>
 
     <body>
-        @include('web.partials.header')
+        {{--@include('web.partials.header')--}}
         @yield('content')
-        @include('web.partials.footer')
-        @include('web.partials.connect.phone')
-        @include('web.partials.connect.facebook')
+        {{--@include('web.partials.footer')--}}
+{{--        @include('web.partials.connect.phone')--}}
+{{--        @include('web.partials.connect.facebook')--}}
         @include('web.assets.js')
         @yield('script')
     </body>

@@ -139,6 +139,7 @@
                                            placeholder="Annotations for illustrations (Product details section)">
                                 </div>
                             </div>
+                            <hr>
                         </div>
                         <div class="col-md-12">
                             <button type="button" class="btn btn-info" onclick="addOtherImage();">More image</button>
